@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
     ViewBag.Title = "赛程详情";
 }
@@ -9,11 +8,47 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        table .btn {
+            margin-right: 20px;
+            margin-bottom: 20px;
+        }
+    </style>
     <title>@ViewBag.Title</title>
 </head>
 <body>
-<div>
-    @ViewBag.Title
-</div>
+    <div class="container">
+        <h3>2018俄罗斯世界杯赛程时间表一览</h3>
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>日期</th>
+                    <th>主队	VS 客队</th>
+                    <th>投注区</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < 50; i++)
+            {
+                    <tr>
+                        <th scope="row">@i</th>
+                        <td>@DateTime.Now.ToString("yyyy/MM/dd")</td>
+                        <td>俄罗斯VS沙特阿拉伯</td>
+                        <td>
+                            <a class="btn btn-success" onclick="alert('买胜')">胜</a>
+                            <a class="btn btn-info" onclick="alert('买平')">平</a>
+                            <a class="btn btn-warning" onclick="alert('买负')">负</a>
+                        </td>
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
+<script src="~/Content/js/jquery.min.js"></script>
+
