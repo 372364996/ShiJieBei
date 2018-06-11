@@ -26,5 +26,10 @@ namespace ShiJieBei.Controllers
 
             return View();
         }
+        public ActionResult Login()
+        {
+
+            return View();
+        }
     }
 }
