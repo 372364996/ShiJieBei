@@ -53,6 +53,8 @@ namespace ShiJieBeiComponents.Repositories.EF
             modelBuilder.Configurations.Add(new AccountCashOutLogMapping());
 
         }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Account> Accounts { get; set; }
     }
 
     public class UserMapping : EntityTypeConfiguration<User>

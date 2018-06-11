@@ -11,6 +11,7 @@ namespace ShiJieBeiComponents.Domains
         [StringLength(100)]
         public string UserGuid { get; set; }
         public string Name { get; set; }
+        public string Password { get; set; }
         public int Sex { get; set; }
         public string Country { get; set; }
         public string Province { get; set; }
