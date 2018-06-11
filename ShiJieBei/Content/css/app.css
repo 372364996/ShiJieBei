@@ -13,4 +13,5 @@ html,body{background: #444444;}
 .login-font span { color: #fff;}
 .login-am-center { margin: 0 auto; float:none;}
 .login-am-center .am-form input { background: #caccc6; border: none;  font-size: 12px; line-height: 30px; text-indent: 10px;}
-.login-am-center .am-btn-default { width: 100%; background: #eb602e; border: none; color: #fff; font-size: 14px; line-height: 30px;}
+.login-am-center .am-btn-default { width: 100%; background: darkseagreen; border: none; color: #fff; font-size: 14px; line-height: 30px;}
+.login-am-center .btn-signup { background: #eb602e}
