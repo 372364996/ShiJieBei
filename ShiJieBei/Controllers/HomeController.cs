@@ -36,6 +36,11 @@ namespace ShiJieBei.Controllers
 
             return View();
         }
+        public ActionResult SignUp()
+        {
+
+            return View();
+        }
         [HttpPost]
         public ActionResult Login(string name, string pwd, string returnUrl)
         {
