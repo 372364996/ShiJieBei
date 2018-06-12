@@ -25,7 +25,8 @@ namespace ShiJieBei.Controllers
             {
                 if (user == null && User.Identity.IsAuthenticated)
                 {
-                    user = _db.Users.SingleOrDefault(u=>u.Id==Convert.ToInt32(User.Identity.Name));
+                    var userId = Convert.ToInt32(User.Identity.Name);
+                    user = _db.Users.SingleOrDefault(u=>u.Id== userId);
                 }
 
                 return user;

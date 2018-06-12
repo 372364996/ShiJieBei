@@ -12,6 +12,8 @@ namespace ShiJieBei.Controllers
         // GET: Game
         public ActionResult Index()
         {
+            ViewBag.Name = CurrentUser.Name;
+            ViewBag.Vouchers = CurrentUser.Account.Vouchers;
             return View();
         }
     }
