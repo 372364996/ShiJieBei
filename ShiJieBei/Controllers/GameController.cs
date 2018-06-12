@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ShiJieBei.Models;
 
 namespace ShiJieBei.Controllers
 {
@@ -12,9 +13,12 @@ namespace ShiJieBei.Controllers
         // GET: Game
         public ActionResult Index()
         {
-            ViewBag.Name = CurrentUser.Name;
-            ViewBag.Vouchers = CurrentUser.Account.Vouchers;
-            return View();
+            var model = new GameViewModel
+            {
+                User = CurrentUser,
+                Games = _db.Games.ToList()
+            };
+            return View(model);
         }
     }
 }

@@ -61,7 +61,7 @@ namespace ShiJieBeiComponents.Domains
         /// </summary>
         public virtual Account Account { get; set; }
 
-
+        public virtual List<GameOrders> GameOrders { get; set; }
     }
 
 

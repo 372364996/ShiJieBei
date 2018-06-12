@@ -42,12 +42,13 @@ namespace ShiJieBei.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult SignUp(string email,string wallet, string pwd, string qrpwd, string returnUrl)
+        public ActionResult SignUp(string email, string wallet, string pwd, string qrpwd, string returnUrl)
         {
             if (!pwd.Equals(qrpwd))
                 return View((object)"密码不一致");
             User user = new User
             {
+                Name = $"User-{Utils.GetRandomString()}",
                 Email = email,
                 LastImgTime = DateTime.Now,
                 CreateTime = DateTime.Now,
@@ -56,7 +57,7 @@ namespace ShiJieBei.Controllers
                 {
                     Money = 0,
                     MoneyLocked = 0,
-                    
+                    Vouchers = 10000
                 }
             };
             string pwdHash = CryptoHelper.Md5(pwd);
@@ -67,10 +68,10 @@ namespace ShiJieBei.Controllers
             return Redirect("/game");
         }
         [HttpPost]
-        public ActionResult Login(string name, string pwd, string returnUrl)
+        public ActionResult Login(string email, string pwd, string returnUrl)
         {
             string pwdHash = CryptoHelper.Md5(pwd);
-            var user = _db.Users.FirstOrDefault(m => m.Name == name && m.Password == pwdHash);
+            var user = _db.Users.FirstOrDefault(m => m.Email == email && m.Password == pwdHash);
             if (user != null)
             {
                 SetAuthCookie(user);

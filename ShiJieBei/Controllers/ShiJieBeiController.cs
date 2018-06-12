@@ -17,7 +17,7 @@ namespace ShiJieBei.Controllers
         protected static ILog logger = LogManager.GetLogger(typeof(ShiJieBeiController));
 
         private User user = null;
-        private readonly ShiJieBeiDbContext _db=new ShiJieBeiDbContext();
+        public readonly ShiJieBeiDbContext _db=new ShiJieBeiDbContext();
         
         protected User CurrentUser
         {

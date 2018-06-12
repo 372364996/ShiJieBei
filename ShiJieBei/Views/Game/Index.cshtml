@@ -1,4 +1,5 @@
-﻿@{
+﻿@model ShiJieBei.Models.GameViewModel
+@{
     Layout = null;
     ViewBag.Title = "赛程详情";
 }
@@ -19,8 +20,8 @@
 </head>
 <body>
     <div class="container">
-        <h3>2018俄罗斯世界杯赛程时间表一览</h3><h4>用户名：@ViewBag.Name</h4>
-        <h4>剩余积分：@ViewBag.Vouchers (下注一次消耗10积分，可多次下注)</h4>
+        <h3>2018俄罗斯世界杯赛程时间表一览</h3><h4>用户名：@Model.User.Name</h4>
+        <h4>剩余积分：@Model.User.Account.Vouchers (下注一次消耗10积分，可多次下注)</h4>
         <table class="table table-bordered table-hover">
             <thead>
                 <tr>
@@ -31,19 +32,21 @@
                 </tr>
             </thead>
             <tbody>
-                @for (int i = 0; i < 50; i++)
-            {
-                    <tr>
-                        <th scope="row">@i</th>
-                        <td>@DateTime.Now.ToString("yyyy/MM/dd")</td>
-                        <td>俄罗斯VS沙特阿拉伯</td>
-                        <td>
-                            <a class="btn btn-success" onclick="alert('买胜')">胜</a>
-                            <a class="btn btn-info" onclick="alert('买平')">平</a>
-                            <a class="btn btn-warning" onclick="alert('买负')">负</a>
-                        </td>
-                    </tr>
-                }
+          @foreach (var item in Model.Games)
+          {
+            <tr>
+                <th scope="row">@item.Id</th>
+                <td>@item.StartTime.ToString("yyyy/MM/dd")</td>
+                <td>@($"{item.ZhuChang }VS{item.KeChang}")</td>
+                <td>
+                    <a class="btn btn-success" onclick="win(@item.Id,@Model.User.Id)">胜</a>
+                    <a class="btn btn-info" onclick="pingju(@item.Id,@Model.User.Id)">平</a>
+                    <a class="btn btn-warning" onclick="lose(@item.Id,@Model.User.Id)">负</a>
+                </td>
+            </tr>
+
+          }
+                  
 
 
             </tbody>
@@ -52,4 +55,30 @@
 </body>
 </html>
 <script src="~/Content/js/jquery.min.js"></script>
+<script>
+    function win(gameId,userId) {
+        if (confirm("确实买'胜'么")) {
+            $.post("/gameorder/createorder", { gameId: gameId, userId: userId,gameResult:0 }, function (d, s, xhr) {
+                alert("下注成功");
+                window.location = window.location;
+            });
+        }
+    }
+    function pingju(gameId,userId) {
+        if (confirm("确实买'平'么")) {
+            $.post("/gameorder/createorder", { gameId: gameId, userId: userId,gameResult:1 }, function (d, s, xhr) {
+                alert("下注成功");
+                window.location = window.location;
+            });
+        }
+    }
+    function lose(gameId,userId) {
+        if (confirm("确实买'输'么")) {
+            $.post("/gameorder/createorder", { gameId: gameId, userId: userId,gameResult:2 }, function (d, s, xhr) {
+                alert("下注成功");
+                window.location = window.location;
+            });
+        }
+    }
+</script>
 

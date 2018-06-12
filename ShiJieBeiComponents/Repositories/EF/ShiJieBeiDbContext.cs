@@ -55,13 +55,30 @@ namespace ShiJieBeiComponents.Repositories.EF
         }
         public DbSet<User> Users { get; set; }
         public DbSet<Account> Accounts { get; set; }
+        public DbSet<Games> Games { get; set; }
+        public DbSet<GameOrders> GameOrders { get; set; }
+        public DbSet<AccountVouchersLog> AccountVouchersLog { get; set; }
     }
-
+    public class GamesMapping : EntityTypeConfiguration<Games>
+    {
+        public GamesMapping()
+        {
+            ToTable("Games");
+            HasMany(g => g.GameOrders)
+                .WithRequired(g => g.Game)
+                .HasForeignKey(g => g.GameId)
+                .WillCascadeOnDelete(false);
+        }
+    }
     public class UserMapping : EntityTypeConfiguration<User>
     {
         public UserMapping()
         {
             ToTable("Users");
+            HasMany(u => u.GameOrders)
+                .WithRequired(l => l.User)
+                .HasForeignKey(l => l.UserId)
+                .WillCascadeOnDelete(false);
         }
     }
 
