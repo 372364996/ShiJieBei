@@ -1,0 +1,67 @@
+﻿@using ShiJieBeiComponents.Domains
+@model List<ShiJieBei.Models.MyGameListViewModel>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        table .btn {
+            margin-right: 20px;
+            margin-bottom: 20px;
+        }
+    </style>
+    <title>我的下注</title>
+</head>
+<body>
+    <div class="container">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>订单号</th>
+                    <th>订单日期</th>
+                    <th>主队	VS 客队</th>
+                    <th>比赛日期</th>
+                    <th>我已投</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+            {
+                    <tr>
+                        <th scope="row">@item.Number</th>
+                        <td>@item.CreateTime</td>
+                        <td>@($"{item.ZhuChang }VS{item.KeChang}")</td>
+                        <td>@item.StartTime</td>
+                        <td>
+                            @if (item.GameOrderStatus == GameOrderStatus.Win)
+                            {
+                                <a class="btn btn-success" disabled="disabled">胜</a>
+                            }
+                            else if (item.GameOrderStatus == GameOrderStatus.Ping)
+                            {
+                                <a class="btn btn-info" disabled="disabled">平</a>
+                            }
+                            else
+                            {
+                                <a class="btn btn-warning" disabled="disabled">负</a>
+                            }
+
+
+                        </td>
+                    </tr>
+
+                }
+
+
+
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

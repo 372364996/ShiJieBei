@@ -168,6 +168,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\GameViewModel.cs" />
+    <Compile Include="Models\MyGameListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -226,10 +227,10 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Game\Index.cshtml" />
     <Content Include="Views\Home\SignUp.cshtml" />
+    <Content Include="Views\GameOrder\MyGameList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\GameOrder\" />
     <Folder Include="Views\ShiJieBei\" />
   </ItemGroup>
   <ItemGroup>
