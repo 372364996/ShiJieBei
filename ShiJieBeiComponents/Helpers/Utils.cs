@@ -544,7 +544,38 @@ namespace ShiJieBeiComponents.Helpers
             str = str.Replace("{￥jia￥}", "+");
             return str;
         }
+        /// <summary>
+        /// 发送激活邮件
+        /// </summary>
+        /// <param name="email">邮箱地址</param>
+        /// <param name="msg">错误详情</param>
+        public static void SendEmail(string email, string msg)
+        {
+            var mg = new MailMessage();
+            mg.To.Add(email);
+            mg.From = new MailAddress("worldcup2O18@163.com");
+            mg.Subject = "激活账号";//邮件标题 
+            mg.SubjectEncoding = Encoding.UTF8;//邮件标题编码 
+            mg.Body = msg;//邮件内容 
+            mg.BodyEncoding = Encoding.UTF8;//邮件内容编码 
+            mg.IsBodyHtml = true;//是否是HTML邮件 
+            mg.Priority = MailPriority.High;//邮件优先级
+            var client = new SmtpClient
+            {
+                Credentials = new System.Net.NetworkCredential("worldcup2O18@163.com", "a2151888"),
+                Host = "smtp.163.com"
+            };
+            try
+            {
 
+                logger.Debug($"{email}已发送");
+                client.Send(mg);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
         /// <summary>
         /// 发生异常时发送异常详情到个人邮箱
         /// </summary>

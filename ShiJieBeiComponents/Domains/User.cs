@@ -30,11 +30,14 @@ namespace ShiJieBeiComponents.Domains
         public DateTime CreateTime { get; set; }
         public DateTime LastImgTime { get; set; }
         public string Mobile { get; set; }
-
         /// <summary>
-        /// 是否短信验证通过
+        /// 邮箱激活码
         /// </summary>
-        public bool IsMsgValid { get; set; }
+        public string Token { get; set; }
+        /// <summary>
+        /// 是否邮箱验证通过
+        /// </summary>
+        public bool IsEmailValid { get; set; }
 
         /// <summary>
         /// 是否赠送过点券
