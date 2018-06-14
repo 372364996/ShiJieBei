@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -176,11 +177,52 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\amazeui.min.css" />
     <Content Include="Content\css\app.css" />
+    <Content Include="Content\css\feedback.css" />
+    <Content Include="Content\css\icons-extra.css" />
+    <Content Include="Content\css\login.css" />
+    <Content Include="Content\css\main.css" />
+    <Content Include="Content\css\mui.dtpicker.css" />
+    <Content Include="Content\css\mui.imageviewer.css" />
+    <Content Include="Content\css\mui.indexedlist.css" />
+    <Content Include="Content\css\mui.listpicker.css" />
+    <Content Include="Content\css\mui.min.css" />
+    <Content Include="Content\css\mui.picker.all.css" />
+    <Content Include="Content\css\mui.picker.css" />
+    <Content Include="Content\css\mui.picker.min.css" />
+    <Content Include="Content\css\mui.poppicker.css" />
     <Content Include="Content\img\bg.jpg" />
+    <Content Include="Content\img\login\60x60.gif" />
+    <Content Include="Content\img\login\head-img.gif" />
     <Content Include="Content\img\logo.jpg" />
+    <Content Include="Content\js\95516.js" />
     <Content Include="Content\js\amazeui.min.js" />
     <Content Include="Content\js\app.js" />
+    <Content Include="Content\js\arttmpl.js" />
+    <Content Include="Content\js\beecloud.js" />
+    <Content Include="Content\js\city.data-3.js" />
+    <Content Include="Content\js\city.data.js" />
+    <Content Include="Content\js\feedback.js" />
     <Content Include="Content\js\jquery.min.js" />
+    <Content Include="Content\js\mui.dtpicker.js" />
+    <Content Include="Content\js\mui.imageViewer.js" />
+    <Content Include="Content\js\mui.indexedlist.js" />
+    <Content Include="Content\js\mui.js" />
+    <Content Include="Content\js\mui.lazyload.img.js" />
+    <Content Include="Content\js\mui.lazyload.js" />
+    <Content Include="Content\js\mui.listpicker.js" />
+    <Content Include="Content\js\mui.locker.js" />
+    <Content Include="Content\js\mui.min.js" />
+    <Content Include="Content\js\mui.picker.all.js" />
+    <Content Include="Content\js\mui.picker.js" />
+    <Content Include="Content\js\mui.picker.min.js" />
+    <Content Include="Content\js\mui.poppicker.js" />
+    <Content Include="Content\js\mui.previewimage.js" />
+    <Content Include="Content\js\mui.pullToRefresh.js" />
+    <Content Include="Content\js\mui.pullToRefresh.material.js" />
+    <Content Include="Content\js\mui.view.js" />
+    <Content Include="Content\js\mui.zoom.js" />
+    <Content Include="Content\js\update.js" />
+    <Content Include="Content\js\webviewGroup.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -196,6 +238,8 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\mui-icons-extra.ttf" />
+    <Content Include="fonts\mui.ttf" />
     <None Include="Properties\PublishProfiles\shijiebei - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\shijiebei - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -210,7 +254,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

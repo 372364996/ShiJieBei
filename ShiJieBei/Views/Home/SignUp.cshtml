@@ -2,69 +2,56 @@
 @{
     Layout = null;
 }
-<!doctype html>
-<html class="no-js">
+<!DOCTYPE html>
+<html class="ui-page-login">
+
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>注册-激情世界杯</title>
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <link href="~/Content/css/amazeui.min.css" rel="stylesheet" />
-    <link href="~/Content/css/app.css" rel="stylesheet" />
-</head>
-<body>
-    <div class="am-g myapp-login">
-        <div class="myapp-login-logo-block">
-            <div class="myapp-login-logo">
-                <img src="~/Content/img/logo.jpg" style="width: 20%;height: 20%" />
-            </div>
-            <div class="myapp-login-logo-text">
-                <div class="myapp-login-logo-text">
-                    @if (!String.IsNullOrEmpty(Model))
-                    {
-                        <div class="alert alert-danger">@Model</div>
-                    }
-                </div>
-            </div>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>世界杯竞猜</title>
 
-            <div class="login-font">
+    <link href="~/Content/css/mui.min.css" rel="stylesheet" />
+    <link href="~/Content/css/login.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="mui-content">
+        <div class="mui-row login-img">
+            <div class="mui-col-sm-3 mui-col-xs-3">
             </div>
-            <div class="am-u-sm-10 login-am-center">
-                <form class="am-form" method="post" action="/home/signup">
-                    <fieldset>
-                        <div class="am-form-group">
-                            <input type="email" name="email" class="" id="doc-ipt-email-1" placeholder="输入电子邮件">
-                        </div>
-                        <div class="am-form-group">
-                            <input type="text" name="wallet" class="" id="doc-ipt-wallet-1" placeholder="输入钱包地址">
-                        </div>
-                        <div class="am-form-group">
-                            <input type="password" name="pwd" class="" id="doc-ipt-pwd-1" placeholder="设置密码">
-                        </div>
-                        <div class="am-form-group">
-                            <input type="password" name="qrpwd" class="" id="doc-ipt-qrpwd-1" placeholder="确认密码">
-                        </div>
-                        <p><button type="submit" class="am-btn am-btn-default">注册</button></p>
-                    </fieldset>
-                </form>
+            <div class="mui-col-sm-6 mui-col-xs-6">
+                <img src="~/Content/img/logo.jpg" width="100%" height="100%" />
+                @*<img src="~/Content/img/login/60x60.gif" width="100%" height="100%" />*@
             </div>
+        </div>
+        <form id='login-form' class="mui-input-group" style="margin: 0px 15px;" method="post" action="/home/signup">
+            <div class="mui-input-row">
+                <input id='email' type="email" name="email" class="mui-input-clear" placeholder="输入邮箱">
+            </div>
+            <div class="mui-input-row">
+                <input id='wallet' type="text" name="wallet" class="mui-input-clear" placeholder="输入钱包地址">
+            </div>
+            <div class="mui-input-row">
+                <input id='pwd' type="password" name="pwd" class="mui-input-clear" placeholder="输入密码">
+            </div>
+            <div class="mui-input-row">
+                <input id='qrpwd' type="password" name="qrpwd" class="mui-input-clear" placeholder="确认密码">
+            </div>
+            <button id='gosignup' type="submit" style="display:none" class="mui-btn mui-btn-block mui-btn-primary">触发注册</button>
+        </form>
+        <div class="mui-content-padded">
+            <button id='sign' onclick="goSignUp()" class="mui-btn mui-btn-block mui-btn-primary">注册</button>
+           
         </div>
     </div>
 
-    <!--[if (gte IE 9)|!(IE)]><!-->
-    <script src="~/Content/js/jquery.min.js"></script>
-    <script src="~/Content/js/amazeui.min.js"></script>
-    <script src="~/Content/js/app.js"></script>
-    <!--<![endif]-->
-    <!--[if lte IE 8 ]>
-        <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
-        <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
-        <script src="assets/js/amazeui.ie8polyfill.min.js"></script>
-    <![endif]-->
 </body>
+
 </html>
+<script src="~/Content/js/jquery.min.js"></script>
+<script src="~/Content/js/mui.min.js"></script>
+<script>
+    function goSignUp() {
+        $("#gosignup").click();
+    }
+</script>

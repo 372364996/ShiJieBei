@@ -33,7 +33,6 @@ namespace ShiJieBei.Controllers
         }
         public ActionResult Login()
         {
-
             return View();
         }
         public ActionResult SignUp()
@@ -45,10 +44,11 @@ namespace ShiJieBei.Controllers
         public ActionResult SignUp(string email, string wallet, string pwd, string qrpwd, string returnUrl)
         {
             if (!pwd.Equals(qrpwd))
-                return View((object)"密码不一致");
+                return Content("<script>alert('密码不一致');window.location.href='/home/signup';</script>");
+           
             var data = _db.Users.FirstOrDefault(m => m.Email == email);
             if (data!=null)
-                return View((object)"邮箱已被注册");
+                return Content("<script>alert('邮箱已被注册');window.location.href='/home/signup';</script>");
             User user = new User
             {
                 Name = $"User-{Utils.GetRandomString()}",
@@ -101,14 +101,14 @@ namespace ShiJieBei.Controllers
             {
                 if (!user.IsEmailValid)
                 {
-                    return View((object)"账户未激活");
+                    return Content("<script>alert('账号未激活');window.location.href='/home/login';</script>");
                 }
                 SetAuthCookie(user);
 
                 return Redirect("/game");
             }
 
-            return View((object)"用户名或密码不正确");
+            return  Content("<script>alert('邮箱或密码不正确');window.location.href='/home/login'</script>");
         }
         private void SetAuthCookie(User user)
         {
