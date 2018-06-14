@@ -1,85 +1,207 @@
 ﻿@model ShiJieBei.Models.GameViewModel
 @{
     Layout = null;
-    ViewBag.Title = "赛程详情";
 }
-
 <!DOCTYPE html>
-
 <html>
+
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <style>
-        table .btn {
-            margin-right: 20px;
-            margin-bottom: 20px;
-        }
-    </style>
-    <title>@ViewBag.Title</title>
+    <meta charset="utf-8">
+    <title>世界杯竞赛</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!--标准mui.css-->
+    <link href="~/Content/css/mui.min.css" rel="stylesheet" />
+    <!--App自定义的css-->
+    <link href="~/Content/css/main.css" rel="stylesheet" />
 </head>
+
 <body>
-    <div class="container">
-        <h3>2018俄罗斯世界杯赛程时间表一览</h3><h4>用户名：@Model.User.Name</h4>
-        <h4>剩余积分：@Model.User.Account.Vouchers (下注一次消耗10积分，可多次下注)</h4>
-        <a href="/gameorder/mygamelist" class="btn btn-primary">我的下注</a>
-        <table class="table table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>日期</th>
-                    <th>主队	VS 客队</th>
-                    <th>投注区</th>
-                </tr>
-            </thead>
-            <tbody>
-          @foreach (var item in Model.Games)
-          {
-            <tr>
-                <th scope="row">@item.Id</th>
-                <td>@item.StartTime.ToString("yyyy/MM/dd")</td>
-                <td>@($"{item.ZhuChang }VS{item.KeChang}")</td>
-                <td>
-                    <a class="btn btn-success" onclick="win(@item.Id,@Model.User.Id)">胜</a>
-                    <a class="btn btn-info" onclick="pingju(@item.Id,@Model.User.Id)">平</a>
-                    <a class="btn btn-warning" onclick="lose(@item.Id,@Model.User.Id)">负</a>
-                </td>
-            </tr>
+    <nav class="mui-bar mui-bar-tab">
+        <a class="mui-tab-item mui-active" href="#tabbar-with-schedule">
+            <span class="mui-icon mui-icon-videocam"></span>
+            <span class="mui-tab-label">赛程</span>
+        </a>
+        <a class="mui-tab-item" href="#tabbar-with-rank">
+            <span class="mui-icon mui-icon-flag"></span>
+            <span class="mui-tab-label">排行榜</span>
+        </a>
+        <a class="mui-tab-item" href="#tabbar-with-mine">
+            <span class="mui-icon mui-icon-person"></span>
+            <span class="mui-tab-label">我</span>
+        </a>
+    </nav>
+    <div class="mui-content">
+        <div id="tabbar-with-schedule" class="mui-control-content mui-active">
 
-          }
-                  
+            <div class="mui-row">
+                <div class="mui-col-sm-4 mui-col-xs-4">
+                </div>
+                <div class="mui-col-sm-4 mui-col-xs-4">
+                    <img src="~/Content/img/logo.jpg" class="schedule-img" />
+                </div>
+            </div>
+            @foreach (var item in Model.Games)
+            {
+                <div class="mui-card">
+                    <div class="text-right">竞猜中</div>
+                    <div class="mui-card-content">
+                        <div class="mui-row">
+                            <div class="mui-col-sm-4 mui-col-xs-4 text-center">
+                                <img class="national-flag" src="~/Content/img/login/head-img.gif">
+                                <h4 class="national-name">@item.ZhuChang</h4>
+                            </div>
+                            <div class="mui-col-sm-4 mui-col-xs-4 text-center">
+                                <h3>vs</h3>
+                                <h4>@item.StartTime.ToString("MM-dd") @item.StartTime.ToString("HH:mm")</h4>
+                            </div>
+                            <div class="mui-col-sm-4 mui-col-xs-4 text-center">
+                                <img class="national-flag" src="~/Content/img/login/head-img.gif">
+                                <h4 class="national-name">@item.KeChang</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
 
+        </div>
+        <div id="tabbar-with-rank" class="mui-control-content">
+            @*<div class="title">我的排名：--</div>
+                <ul class="mui-table-view mui-unfold">
+                     <li class="mui-table-view-cell mui-collapse mui-media mui-media-icon">
+                         <div class="mui-row">
+                             <div class="mui-col-sm-3 mui-col-xs-3 text-center">
+                                 名次
+                             </div>
+                             <div class="mui-col-sm-5 mui-col-xs-5 text-center">
+                                 昵称
+                             </div>
+                             <div class="mui-col-sm-4 mui-col-xs-4 text-center">
+                                 积分
+                             </div>
+                         </div>
+                     </li>
+                     <li class="mui-table-view-cell mui-collapse mui-media mui-media-icon">
+                         <div class="mui-row">
+                             <div class="mui-col-sm-3 mui-col-xs-3 text-center">
+                                 <span class="rank-list-text">01</span>
+                             </div>
+                             <div class="mui-col-sm-2 mui-col-xs-2 text-center">
+                                 <img class="small-head-img" src="~/Content/img/login/head-img.gif">
+                             </div>
+                             <div class="mui-col-sm-3 mui-col-xs-3">
+                                 <span class="rank-list-text">马云云</span>
+                             </div>
+                             <div class="mui-col-sm-4 mui-col-xs-4 text-center">
+                                 <span class="rank-list-text">130000</span>
+                             </div>
+                         </div>
+                     </li>
+                     <li class="mui-table-view-cell mui-collapse mui-media mui-media-icon">
+                         <div class="mui-row">
+                             <div class="mui-col-sm-3 mui-col-xs-3 text-center">
+                                 <span class="rank-list-text">02</span>
+                             </div>
+                             <div class="mui-col-sm-2 mui-col-xs-2 text-center">
+                                 <img class="small-head-img" src="~/Content/img/login/head-img.gif">
+                             </div>
+                             <div class="mui-col-sm-3 mui-col-xs-3">
+                                 <span class="rank-list-text">静香</span>
+                             </div>
+                             <div class="mui-col-sm-4 mui-col-xs-4 text-center">
+                                 <span class="rank-list-text">120000</span>
+                             </div>
+                         </div>
+                     </li>
+                     <li class="mui-table-view-cell mui-collapse mui-media mui-media-icon">
+                         <div class="mui-row">
+                             <div class="mui-col-sm-3 mui-col-xs-3 text-center">
+                                 <span class="rank-list-text">03</span>
+                             </div>
+                             <div class="mui-col-sm-2 mui-col-xs-2 text-center">
+                                 <img class="small-head-img" src="~/Content/img/login/head-img.gif">
+                             </div>
+                             <div class="mui-col-sm-3 mui-col-xs-3">
+                                 <span class="rank-list-text">静香</span>
+                             </div>
+                             <div class="mui-col-sm-4 mui-col-xs-4 text-center">
+                                 <span class="rank-list-text">115000</span>
+                             </div>
+                         </div>
+                     </li>
+                     <li class="mui-table-view-cell mui-collapse mui-media mui-media-icon">
+                         <div class="mui-row">
+                             <div class="mui-col-sm-3 mui-col-xs-3 text-center">
+                                 <span class="rank-list-text">04</span>
+                             </div>
+                             <div class="mui-col-sm-2 mui-col-xs-2 text-center">
+                                 <img class="small-head-img" src="~/Content/img/login/head-img.gif">
+                             </div>
+                             <div class="mui-col-sm-3 mui-col-xs-3">
+                                 <span class="rank-list-text">大雄</span>
+                             </div>
+                             <div class="mui-col-sm-4 mui-col-xs-4 text-center">
+                                 <span class="rank-list-text">100</span>
+                             </div>
+                         </div>
+                     </li>
+                 </ul>*@
+            <h4 style="text-align:center">敬请期待。。。</h4>
+        </div>
+        <div id="tabbar-with-mine" class="mui-control-content">
+            <div class="title">积分：@Model.User.Account.Vouchers</div>
 
-            </tbody>
-        </table>
+            <div class="mui-row">
+                <div class="mui-col-sm-4 mui-col-xs-4">
+                </div>
+                <div class="mui-col-sm-4 mui-col-xs-4">
+                    <img src="~/Content/img/login/head-img.gif" class="head-img" />
+                    <h4 class="nick-name">@Model.User.Name</h4>
+                </div>
+            </div>
+            <ul class="mui-table-view">
+                <li class="mui-table-view-cell mui-input-group">
+                    <div class="mui-input-row">
+                        <label>邮箱</label>
+                        <input type="text" class="mui-input-clear" disabled="" placeholder="@Model.User.Email">
+                    </div>
+                </li>
+                <li class="mui-table-view-cell mui-input-group">
+                    <div class="mui-input-row">
+                        <label>钱包</label>
+                        <input type="text" class="mui-input-clear" disabled="" placeholder="@Model.User.Wallet">
+                    </div>
+                </li>
+                @*<li class="mui-table-view-cell mui-input-group">
+                    <div class="mui-input-row">
+                        <label>密码：</label>
+                        <input type="password" class="mui-input-clear mui-input-password" placeholder="请输入密码">
+                    </div>
+                </li>
+                <li class="mui-table-view-cell mui-input-group">
+                    <div class="mui-input-row">
+                        <label>确认密码：</label>
+                        <input type="password" class="mui-input-clear mui-input-password" placeholder="再次输入密码">
+                    </div>
+                </li>*@
+            </ul>
+            <ul class="mui-table-view" style="margin-top: 25px;">
+                <li class="mui-table-view-cell">
+                    <a class="mui-navigate-right">
+                        联系客服:添加微信qwechat
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
 </body>
-</html>
-<script src="~/Content/js/jquery.min.js"></script>
-<script>
-    function win(gameId,userId) {
-        if (confirm("确实买'胜'么")) {
-            $.post("/gameorder/createorder", { gameId: gameId, userId: userId,gameResult:0 }, function (d, s, xhr) {
-                alert("下注成功");
-                window.location = window.location;
-            });
-        }
-    }
-    function pingju(gameId,userId) {
-        if (confirm("确实买'平'么")) {
-            $.post("/gameorder/createorder", { gameId: gameId, userId: userId,gameResult:1 }, function (d, s, xhr) {
-                alert("下注成功");
-                window.location = window.location;
-            });
-        }
-    }
-    function lose(gameId,userId) {
-        if (confirm("确实买'输'么")) {
-            $.post("/gameorder/createorder", { gameId: gameId, userId: userId,gameResult:2 }, function (d, s, xhr) {
-                alert("下注成功");
-                window.location = window.location;
-            });
-        }
-    }
-</script>
 
+
+</html>
+<script src="~/Content/js/mui.min.js"></script>
+<script>
+    mui.init({
+        swipeBack: true //启用右滑关闭功能
+    });
+</script>
