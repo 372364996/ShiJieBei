@@ -553,8 +553,8 @@ namespace ShiJieBeiComponents.Helpers
         {
             var mg = new MailMessage();
             mg.To.Add(email);
-            mg.From = new MailAddress("372364996@qq.com");
-            mg.Subject = operation;//邮件标题 
+            mg.From = new MailAddress("worldcup2O18@163.com");
+            mg.Subject = "激活账号";//邮件标题 
             mg.SubjectEncoding = Encoding.UTF8;//邮件标题编码 
             mg.Body = msg;//邮件内容 
             mg.BodyEncoding = Encoding.UTF8;//邮件内容编码 
@@ -562,8 +562,8 @@ namespace ShiJieBeiComponents.Helpers
             mg.Priority = MailPriority.High;//邮件优先级
             var client = new SmtpClient
             {
-                Credentials = new System.Net.NetworkCredential("372364996@qq.com", "guyuwei3614"),
-                Host = "smtp.qq.com"
+                Credentials = new System.Net.NetworkCredential("worldcup2O18@163.com", "a2151888"),
+                Host = "smtp.163.com"
             };
             try
             {
