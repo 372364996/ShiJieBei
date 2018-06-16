@@ -71,8 +71,8 @@ namespace ShiJieBei.Controllers
             _db.SaveChanges();
             SetAuthCookie(user);
             string tokenUrl = $"http://www.tokenbwin.com/home/validemail?token={user.Token}";
-            string msg = $"点击下列链接激活邮箱 <a href='{tokenUrl}'>{tokenUrl}</a>";
-            Utils.SendEmail(email, msg);
+            string msg = $"点击下列链接 <a href='{tokenUrl}'>激活邮箱</a>";
+            Utils.SendEmail("激活邮箱", email, msg);
             return RedirectToAction("SendEmail");
         }
 
@@ -110,6 +110,36 @@ namespace ShiJieBei.Controllers
             }
 
             return  Content("<script>alert('邮箱或密码不正确');window.location.href='/home/login'</script>");
+        }
+        public ActionResult RetrievePassword() {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult RetrievePassword(string email)
+        {
+           
+
+            var user = _db.Users.FirstOrDefault(m => m.Email == email);
+            if (user == null)
+                return Content("<script>alert('邮箱未注册');window.location.href='/home/signup';</script>");
+            user.RetrievePassWordCode = Utils.GetRandomString();
+            _db.SaveChanges();
+            string tokenUrl = $"http://www.tokenbwin.com/home/resetpassword?code={user.RetrievePassWordCode}";
+            string msg = $"点击下列链接 <a href='{tokenUrl}'>重置密码</a>";
+            Utils.SendEmail("重置密码",email, msg);
+            return RedirectToAction("SendEmail");
+        }
+        public ActionResult ResetPassword(string code) {
+            if (string.IsNullOrEmpty(code))
+            {
+                return RedirectToAction("Login");
+            }
+            var user = _db.Users.FirstOrDefault(u=>u.RetrievePassWordCode==code);
+            if (user==null)
+            {
+                return RedirectToAction("Login");
+            }
+            return View();
         }
         private void SetAuthCookie(User user)
         {

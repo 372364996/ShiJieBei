@@ -235,7 +235,7 @@
     <Content Include="Content\img\nav\sc.png" />
     <Content Include="Content\img\nav\w-hover.png" />
     <Content Include="Content\img\nav\w.png" />
-    <Content Include="Content\js\95516.js" />
+    <Content Include="Content\js\955160.js" />
     <Content Include="Content\js\amazeui.min.js" />
     <Content Include="Content\js\app.js" />
     <Content Include="Content\js\arttmpl.js" />
@@ -318,6 +318,8 @@
     <Content Include="Views\Home\SignUp.cshtml" />
     <Content Include="Views\GameOrder\MyGameList.cshtml" />
     <Content Include="Views\Home\SendEmail.cshtml" />
+    <Content Include="Views\Home\RetrievePassword.cshtml" />
+    <Content Include="Views\Home\ResetPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
