@@ -1,0 +1,75 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>排行版</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!--标准mui.css-->
+    <link rel="stylesheet" href="~/Content/css/mui.min.css">
+    <!--App自定义的css-->
+    <link rel="stylesheet" type="text/css" href="~/Content/css/rank.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css/app.css" />
+
+</head>
+
+<body>
+    <nav class="mui-bar mui-bar-tab">
+        <a class="mui-tab-item" href="/game">
+            <img class="mui-icon" src="~/Content/img/nav/sc.png"></img>
+            <span class="mui-tab-label">赛程</span>
+        </a>
+        <a class="mui-tab-item mui-active" href="/game/rank">
+            <img class="mui-icon" src="~/Content/img/nav/phb-hover.png"></img>
+            <span class="mui-tab-label">排行榜</span>
+        </a>
+        <a class="mui-tab-item" href="/my">
+            <img class="mui-icon" src="~/Content/img/nav/w.png"></img>
+            <span class="mui-tab-label">我</span>
+        </a>
+    </nav>
+    <div class="mui-content my-content">
+        <h4 class="text-center">我的排名：100</h4>
+        <ul class="mui-table-view mui-unfold">
+            <li class="mui-table-view-cell mui-collapse mui-media mui-media-icon">
+                <div class="mui-row">
+                    <div class="mui-col-sm-4 mui-col-xs-4 ">
+                        名次
+                    </div>
+                    <div class="mui-col-sm-4 mui-col-xs-4 ">
+                        昵称
+                    </div>
+                    <div class="mui-col-sm-4 mui-col-xs-4 text-right">
+                        积分
+                    </div>
+                </div>
+            </li>
+            <li class="mui-table-view-cell mui-collapse mui-media mui-media-icon">
+                <div class="mui-row">
+                    <div class="mui-col-sm-4 mui-col-xs-4 ">
+                        <img class="rank-icon" src="~/Content/img/rank/phb_01.png">
+                    </div>
+                    <div class="mui-col-sm-1 mui-col-xs-1 ">
+                        <img class="icon-img" src="~/Content/img/login/head-img.gif">
+                    </div>
+                    <div class="mui-col-sm-4 mui-col-xs-4">
+                        <span class="rank-list-text">马云云</span>
+                    </div>
+                    <div class="mui-col-sm-3 mui-col-xs-3 text-right">
+                        <span class="rank-list-text">130000</span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</body>
+</html>

@@ -20,5 +20,10 @@ namespace ShiJieBei.Controllers
             };
             return View(model);
         }
+        public ActionResult Rank()
+        {
+          
+            return View();
+        }
     }
 }
