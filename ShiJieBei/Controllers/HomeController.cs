@@ -69,7 +69,7 @@ namespace ShiJieBei.Controllers
             user.Password = pwdHash;
             _db.Users.Add(user);
             _db.SaveChanges();
-            SetAuthCookie(user);
+            //SetAuthCookie(user);
             string tokenUrl = $"http://www.tokenbwin.com/home/validemail?token={user.Token}";
             string msg = $"点击下列链接 <a href='{tokenUrl}'>激活邮箱</a>";
             Utils.SendEmail("激活邮箱", email, msg);
