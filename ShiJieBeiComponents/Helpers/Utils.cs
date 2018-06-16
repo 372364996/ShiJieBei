@@ -549,21 +549,27 @@ namespace ShiJieBeiComponents.Helpers
         /// </summary>
         /// <param name="email">邮箱地址</param>
         /// <param name="msg">错误详情</param>
-        public static void SendEmail(string operation,string email, string msg)
+        public static void SendEmail(string operation, string email, string msg)
         {
             var mg = new MailMessage();
             mg.To.Add(email);
             mg.From = new MailAddress("worldcup2O18@163.com");
-            mg.Subject = "激活账号";//邮件标题 
+            mg.Subject = operation;//邮件标题 
             mg.SubjectEncoding = Encoding.UTF8;//邮件标题编码 
             mg.Body = msg;//邮件内容 
             mg.BodyEncoding = Encoding.UTF8;//邮件内容编码 
             mg.IsBodyHtml = true;//是否是HTML邮件 
             mg.Priority = MailPriority.High;//邮件优先级
+
             var client = new SmtpClient
             {
                 Credentials = new System.Net.NetworkCredential("worldcup2O18@163.com", "a2151888"),
-                Host = "smtp.163.com"
+                Host = "smtp.163.com",
+                EnableSsl = true,
+                Port = 587,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Timeout = 20000
             };
             try
             {
@@ -573,8 +579,38 @@ namespace ShiJieBeiComponents.Helpers
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                logger.Debug(ex.Message);
             }
+        }
+        public static void SendEmailByCdo(string operation, string email, string msg)
+        {
+            CDO.Message objMail = new CDO.Message();
+            try
+            {
+                objMail.To = "372364996@qq.com";
+                objMail.From = "worldcup2O18@163.com";
+                objMail.Subject = operation;//邮件主题 
+                objMail.HTMLBody = msg;//邮件内容 
+                objMail.Configuration.Fields["http://schemas.microsoft.com/cdo/configuration/smtpserverport"].Value = 465;//设置端口 
+                objMail.Configuration.Fields["http://schemas.microsoft.com/cdo/configuration/smtpserver"].Value = "smtp.163.com";
+                objMail.Configuration.Fields["http://schemas.microsoft.com/cdo/configuration/sendemailaddress"].Value = "worldcup2O18@163.com";
+                objMail.Configuration.Fields["http://schemas.microsoft.com/cdo/configuration/smtpuserreplyemailaddress"].Value = "worldcup2O18@163.com";
+                objMail.Configuration.Fields["http://schemas.microsoft.com/cdo/configuration/smtpaccountname"].Value = "worldcup2O18@163.com";
+                objMail.Configuration.Fields["http://schemas.microsoft.com/cdo/configuration/sendusername"].Value = "worldcup2O18@163.com";
+                objMail.Configuration.Fields["http://schemas.microsoft.com/cdo/configuration/sendpassword"].Value = "a2151888";
+                objMail.Configuration.Fields["http://schemas.microsoft.com/cdo/configuration/sendusing"].Value = 2;
+                objMail.Configuration.Fields["http://schemas.microsoft.com/cdo/configuration/smtpauthenticate"].Value = 1;
+                objMail.Configuration.Fields["http://schemas.microsoft.com/cdo/configuration/smtpusessl"].Value = "true";//这一句指示是否使用ssl 
+                objMail.Configuration.Fields.Update(); objMail.Send();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            { }
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(objMail);
+            objMail = null;
         }
         /// <summary>
         /// 发生异常时发送异常详情到个人邮箱

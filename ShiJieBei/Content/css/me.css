@@ -1,0 +1,53 @@
+input[type=text],
+input[type=password] {
+	margin: 8px 0px;
+}
+#password{
+	width: 50%;
+}
+.change-pwd-btn{
+	float: right;
+	margin-top: 17px;
+	font-size: 17px;
+	color: #145DF6;
+}
+.mui-input-group .mui-input-row {
+	height: 55px;
+}
+
+.mui-input-row label {
+	margin-top: 20px;
+	color: #333333;
+}
+
+.head-div {
+	margin-left: 25px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.nick-name-div {
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 15px;
+}
+
+.head-img {
+	vertical-align: top;
+	border-radius: 50%;
+}
+.nick-name{
+	display: block;
+	font-size: 20px;
+	color: #333333;
+	margin-top: 15px;
+	margin-bottom: 10px;
+}
+.integral{
+	font-size: 15px;
+	color: #333333;
+}
+.jf-icon{
+	position: relative;
+	top: 3px;	
+}

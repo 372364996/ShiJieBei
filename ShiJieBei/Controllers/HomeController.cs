@@ -72,7 +72,7 @@ namespace ShiJieBei.Controllers
             //SetAuthCookie(user);
             string tokenUrl = $"http://www.tokenbwin.com/home/validemail?token={user.Token}";
             string msg = $"点击下列链接 <a href='{tokenUrl}'>激活邮箱</a>";
-            Utils.SendEmail("激活邮箱", email, msg);
+            Utils.SendEmailByCdo("激活邮箱", email, msg);
             return RedirectToAction("SendEmail");
         }
 
@@ -126,7 +126,7 @@ namespace ShiJieBei.Controllers
             _db.SaveChanges();
             string tokenUrl = $"http://www.tokenbwin.com/home/resetpassword?code={user.RetrievePassWordCode}";
             string msg = $"点击下列链接 <a href='{tokenUrl}'>重置密码</a>";
-            Utils.SendEmail("重置密码",email, msg);
+            Utils.SendEmailByCdo("重置密码",email, msg);
             return RedirectToAction("SendEmail");
         }
         public ActionResult ResetPassword(string code) {

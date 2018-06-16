@@ -179,8 +179,10 @@
     <Content Include="Content\css\app.css" />
     <Content Include="Content\css\feedback.css" />
     <Content Include="Content\css\icons-extra.css" />
+    <Content Include="Content\css\jc.css" />
     <Content Include="Content\css\login.css" />
     <Content Include="Content\css\main.css" />
+    <Content Include="Content\css\me.css" />
     <Content Include="Content\css\mui.dtpicker.css" />
     <Content Include="Content\css\mui.imageviewer.css" />
     <Content Include="Content\css\mui.indexedlist.css" />
@@ -190,6 +192,8 @@
     <Content Include="Content\css\mui.picker.css" />
     <Content Include="Content\css\mui.picker.min.css" />
     <Content Include="Content\css\mui.poppicker.css" />
+    <Content Include="Content\css\rank.css" />
+    <Content Include="Content\css\schedule.css" />
     <Content Include="Content\img\bg.jpg" />
     <Content Include="Content\img\gjtb\adly.png" />
     <Content Include="Content\img\gjtb\agt.png" />
@@ -223,18 +227,57 @@
     <Content Include="Content\img\gjtb\xby.png" />
     <Content Include="Content\img\gjtb\ygl.png" />
     <Content Include="Content\img\gjtb\yl.png" />
+    <Content Include="Content\img\jf.png" />
     <Content Include="Content\img\login\60x60.gif" />
     <Content Include="Content\img\login\dl_btn.png" />
     <Content Include="Content\img\login\head-img.gif" />
     <Content Include="Content\img\login\sjb_pic.png" />
     <Content Include="Content\img\login\zc_btn.png" />
     <Content Include="Content\img\logo.jpg" />
+    <Content Include="Content\img\nationalFlag\adly.png" />
+    <Content Include="Content\img\nationalFlag\agt.png" />
+    <Content Include="Content\img\nationalFlag\aj.png" />
+    <Content Include="Content\img\nationalFlag\bd.png" />
+    <Content Include="Content\img\nationalFlag\bl.png" />
+    <Content Include="Content\img\nationalFlag\bls.png" />
+    <Content Include="Content\img\nationalFlag\bnm.png" />
+    <Content Include="Content\img\nationalFlag\bx.png" />
+    <Content Include="Content\img\nationalFlag\dg.png" />
+    <Content Include="Content\img\nationalFlag\dm.png" />
+    <Content Include="Content\img\nationalFlag\els.png" />
+    <Content Include="Content\img\nationalFlag\fg.png" />
+    <Content Include="Content\img\nationalFlag\glby.png" />
+    <Content Include="Content\img\nationalFlag\gsdlj.png" />
+    <Content Include="Content\img\nationalFlag\hg.png" />
+    <Content Include="Content\img\nationalFlag\kldy.png" />
+    <Content Include="Content\img\nationalFlag\ml.png" />
+    <Content Include="Content\img\nationalFlag\mlg.png" />
+    <Content Include="Content\img\nationalFlag\mxg.png" />
+    <Content Include="Content\img\nationalFlag\nrly.png" />
+    <Content Include="Content\img\nationalFlag\pty.png" />
+    <Content Include="Content\img\nationalFlag\rb.png" />
+    <Content Include="Content\img\nationalFlag\rd.png" />
+    <Content Include="Content\img\nationalFlag\rs.png" />
+    <Content Include="Content\img\nationalFlag\sewy.png" />
+    <Content Include="Content\img\nationalFlag\snje.png" />
+    <Content Include="Content\img\nationalFlag\stalb.png" />
+    <Content Include="Content\img\nationalFlag\tns.png" />
+    <Content Include="Content\img\nationalFlag\wlg.png" />
+    <Content Include="Content\img\nationalFlag\xby.png" />
+    <Content Include="Content\img\nationalFlag\ygl.png" />
+    <Content Include="Content\img\nationalFlag\yl.png" />
     <Content Include="Content\img\nav\phb-hover.png" />
     <Content Include="Content\img\nav\phb.png" />
     <Content Include="Content\img\nav\sc-hover.png" />
     <Content Include="Content\img\nav\sc.png" />
     <Content Include="Content\img\nav\w-hover.png" />
     <Content Include="Content\img\nav\w.png" />
+    <Content Include="Content\img\rank\phb_01.png" />
+    <Content Include="Content\img\rank\phb_02.png" />
+    <Content Include="Content\img\rank\phb_03.png" />
+    <Content Include="Content\img\schedule\bg.jpg" />
+    <Content Include="Content\img\schedule\jcz.png" />
+    <Content Include="Content\img\schedule\sjb.png" />
     <Content Include="Content\js\955160.js" />
     <Content Include="Content\js\amazeui.min.js" />
     <Content Include="Content\js\app.js" />
@@ -338,6 +381,26 @@
       <Project>{DA0FE073-727D-475D-AE02-02C14F3D9BA9}</Project>
       <Name>ShiJieBeiComponents</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="ADODB">
+      <Guid>{B691E011-1797-432E-907A-4D8C69339129}</Guid>
+      <VersionMajor>6</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="CDO">
+      <Guid>{CD000000-8B95-11D1-82DB-00C04FB1625D}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

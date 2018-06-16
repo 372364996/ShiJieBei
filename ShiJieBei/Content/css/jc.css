@@ -1,0 +1,28 @@
+.game-rules{
+	margin: 10px 10px 30px 10px;
+	padding: 10px;
+	background-color: #ececec;
+	border-radius: 5px;
+}
+.succ-text {
+	color: #28BB4A;
+}
+.fail-text{
+	color:#EF0305
+}
+.tie-text{
+	color: #333333;
+}
+.jc-btn{
+	font-weight: 700;
+	margin: 2%;
+	height: 60px;
+	width: 28%;
+	border-radius: 10px;
+}
+.btn-div{
+	margin: 15px;
+}
+h4{
+	margin: 20px 0px;
+}

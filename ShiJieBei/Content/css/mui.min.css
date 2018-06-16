@@ -224,7 +224,6 @@ body {
 	font-size: 17px;
 	line-height: 21px;
 	color: #000;
-	background-color: #FFFFFF;
 	-webkit-overflow-scrolling: touch
 }
 
@@ -238,7 +237,6 @@ a:active {
 }
 
 .mui-content {
-	background-color: #FFFFFF;
 	-webkit-overflow-scrolling: touch
 }
 
@@ -1599,8 +1597,8 @@ input[type=submit]:enabled:active {
 	position: relative;
 	overflow: hidden;
 	margin: 10px;
-	border-radius: 2px;
-	background-color: #fff;
+	border-radius: 6px;
+	background-color: rgba(255, 255, 255, 0.8);
 	background-clip: padding-box;
 	box-shadow: 0 1px 2px rgba(0, 0, 0, .3)
 }
@@ -1782,7 +1780,7 @@ input[type=submit]:enabled:active {
 	-webkit-transform: scaleY(.5);
 	transform: scaleY(.5);
 	background-color: #c8c7cc;
-	top: -1px
+	top: 35px
 }
 
 .mui-table-view-icon .mui-table-view-cell .mui-navigate-right .mui-icon {
@@ -2562,7 +2560,7 @@ select:focus {
 .mui-input-row label~input,
 .mui-input-row label~select,
 .mui-input-row label~textarea {
-	float: right;
+	float: left;
 	width: 65%;
 	margin-bottom: 0;
 	padding-left: 0;
@@ -4175,10 +4173,10 @@ body>.mui-progressbar {
 }
 
 @font-face {
-    font-family: Muiicons;
-    font-weight: 400;
-    font-style: normal;
-    src: url(../../fonts/mui.ttf) format('truetype')
+	font-family: Muiicons;
+	font-weight: 400;
+	font-style: normal;
+	src: url(../fonts/mui.ttf) format('truetype')
 }
 
 .mui-icon {

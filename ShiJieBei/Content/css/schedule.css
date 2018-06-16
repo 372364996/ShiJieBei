@@ -1,0 +1,47 @@
+html{
+	background: url(../img/schedule/bg.jpg) no-repeat fixed top;
+	background-size:100% 100%;
+}
+.jc-img-div{
+	float: right;
+}
+.inline-block{
+	display: inline-block;
+}
+.mui-card-content{
+	margin: 0px;
+}
+.jc-div{
+	position: relative;
+	bottom: 35px;
+	width:100%;
+	margin: 50px 0px -20px 0px;
+	padding: 0px;
+}
+.js-icon{
+	width: 40px;
+}
+.third{
+	width: 32%;
+	float: none;
+}
+h1{
+	font-size: 36px;
+}
+.start-time{
+	margin-top: 10px;
+	background-color: #555555;
+	color: #FFFFFF;
+	font-size: 16px;
+	padding: 1px 5px;
+	border-radius: 6px;
+}
+.national{
+	margin-top: 10px;
+	color: #333333;
+	font-size: 15px;
+	font-weight: 700;
+}
+.flag{
+	width: 60px;
+}

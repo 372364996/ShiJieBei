@@ -7,196 +7,64 @@
 
 <head>
     <meta charset="utf-8">
-    <title>世界杯竞赛</title>
+    <title>对战信息</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <!--标准mui.css-->
-    <link href="~/Content/css/mui.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/css/mui.min.css">
     <!--App自定义的css-->
-    <link href="~/Content/css/main.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css/schedule.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css/app.css" />
+
 </head>
 
 <body>
     <nav class="mui-bar mui-bar-tab">
-        <a class="mui-tab-item mui-active" href="#tabbar-with-schedule">
-            <span class="mui-icon mui-icon-videocam"></span>
+        <a class="mui-tab-item mui-active" href="schedule.html">
+            <img class="mui-icon" src="~/Content/img/nav/sc-hover.png"></img>
             <span class="mui-tab-label">赛程</span>
         </a>
-        <a class="mui-tab-item" href="#tabbar-with-rank">
-            <span class="mui-icon mui-icon-flag"></span>
+        <a class="mui-tab-item" href="rank.html">
+            <img class="mui-icon" src="~/Content/img/nav/phb.png"></img>
             <span class="mui-tab-label">排行榜</span>
         </a>
-        <a class="mui-tab-item" href="#tabbar-with-mine">
-            <span class="mui-icon mui-icon-person"></span>
+        <a class="mui-tab-item" href="me.html">
+            <img class="mui-icon" src="~/Content/img/nav/w.png"></img>
             <span class="mui-tab-label">我</span>
         </a>
     </nav>
-    <div class="mui-content">
-        <div id="tabbar-with-schedule" class="mui-control-content mui-active">
-
-            <div class="mui-row">
-                <div class="mui-col-sm-4 mui-col-xs-4">
-                </div>
-                <div class="mui-col-sm-4 mui-col-xs-4">
-                    <img src="~/Content/img/logo.jpg" class="schedule-img" />
-                </div>
-            </div>
+    <div class="mui-content my-content">
+        <div class="banner-div">
+            <img src="~/Content/img/schedule/sjb.png" width="100%" height="100%" />
+        </div>
+        <div style="padding-bottom: 20px;">
             @foreach (var item in Model.Games)
             {
                 <div class="mui-card">
-                    <div class="text-right">竞猜中</div>
-                    <div class="mui-card-content">
-                        <div class="mui-row">
-                            <div class="mui-col-sm-4 mui-col-xs-4 text-center">
-                                <img class="national-flag" src="~/Content/img/gjtb/@($"{item.ZhuChangSuoXie}.png")" />
-                                <h4 class="national-name">@item.ZhuChang</h4>
-                            </div>
-                            <div class="mui-col-sm-4 mui-col-xs-4 text-center">
-                                <h3>vs</h3>
-                                <h4>@item.StartTime.ToString("MM-dd") @item.StartTime.ToString("HH:mm")</h4>
-                            </div>
-                            <div class="mui-col-sm-4 mui-col-xs-4 text-center">
-                                <img class="national-flag" src="~/Content/img/gjtb/@($"{item.KeChangSuoXie}.png")">
-                                <h4 class="national-name">@item.KeChang</h4>
-                            </div>
+                    <div class="jc-img-div">
+                        <img src="~/Content/img/schedule/jcz.png" class="js-icon" />
+                    </div>
+                    <div class="jc-div">
+                        <div class="inline-block third">
+                            <img class="flag center-block" src="~/Content/img/gjtb/@($"{item.ZhuChangSuoXie}.png")"/>
+                            <span class="national center-block text-center">@item.ZhuChang</span>
+                        </div>
+                        <div class="inline-block third">
+                            <h1 class="text-center">VS</h1>
+                            <span class="start-time center-block text-center">@item.StartTime.ToString("MM-dd") @item.StartTime.ToString("HH:mm")</span>
+                        </div>
+                        <div class="inline-block third">
+                            <img class="flag center-block" src="~/Content/img/gjtb/@($"{item.KeChangSuoXie}.png")" />
+                            <span class="national center-block text-center">@item.KeChang</span>
                         </div>
                     </div>
                 </div>
             }
 
         </div>
-        <div id="tabbar-with-rank" class="mui-control-content">
-            @*<div class="title">我的排名：--</div>
-                <ul class="mui-table-view mui-unfold">
-                     <li class="mui-table-view-cell mui-collapse mui-media mui-media-icon">
-                         <div class="mui-row">
-                             <div class="mui-col-sm-3 mui-col-xs-3 text-center">
-                                 名次
-                             </div>
-                             <div class="mui-col-sm-5 mui-col-xs-5 text-center">
-                                 昵称
-                             </div>
-                             <div class="mui-col-sm-4 mui-col-xs-4 text-center">
-                                 积分
-                             </div>
-                         </div>
-                     </li>
-                     <li class="mui-table-view-cell mui-collapse mui-media mui-media-icon">
-                         <div class="mui-row">
-                             <div class="mui-col-sm-3 mui-col-xs-3 text-center">
-                                 <span class="rank-list-text">01</span>
-                             </div>
-                             <div class="mui-col-sm-2 mui-col-xs-2 text-center">
-                                 <img class="small-head-img" src="~/Content/img/login/head-img.gif">
-                             </div>
-                             <div class="mui-col-sm-3 mui-col-xs-3">
-                                 <span class="rank-list-text">马云云</span>
-                             </div>
-                             <div class="mui-col-sm-4 mui-col-xs-4 text-center">
-                                 <span class="rank-list-text">130000</span>
-                             </div>
-                         </div>
-                     </li>
-                     <li class="mui-table-view-cell mui-collapse mui-media mui-media-icon">
-                         <div class="mui-row">
-                             <div class="mui-col-sm-3 mui-col-xs-3 text-center">
-                                 <span class="rank-list-text">02</span>
-                             </div>
-                             <div class="mui-col-sm-2 mui-col-xs-2 text-center">
-                                 <img class="small-head-img" src="~/Content/img/login/head-img.gif">
-                             </div>
-                             <div class="mui-col-sm-3 mui-col-xs-3">
-                                 <span class="rank-list-text">静香</span>
-                             </div>
-                             <div class="mui-col-sm-4 mui-col-xs-4 text-center">
-                                 <span class="rank-list-text">120000</span>
-                             </div>
-                         </div>
-                     </li>
-                     <li class="mui-table-view-cell mui-collapse mui-media mui-media-icon">
-                         <div class="mui-row">
-                             <div class="mui-col-sm-3 mui-col-xs-3 text-center">
-                                 <span class="rank-list-text">03</span>
-                             </div>
-                             <div class="mui-col-sm-2 mui-col-xs-2 text-center">
-                                 <img class="small-head-img" src="~/Content/img/login/head-img.gif">
-                             </div>
-                             <div class="mui-col-sm-3 mui-col-xs-3">
-                                 <span class="rank-list-text">静香</span>
-                             </div>
-                             <div class="mui-col-sm-4 mui-col-xs-4 text-center">
-                                 <span class="rank-list-text">115000</span>
-                             </div>
-                         </div>
-                     </li>
-                     <li class="mui-table-view-cell mui-collapse mui-media mui-media-icon">
-                         <div class="mui-row">
-                             <div class="mui-col-sm-3 mui-col-xs-3 text-center">
-                                 <span class="rank-list-text">04</span>
-                             </div>
-                             <div class="mui-col-sm-2 mui-col-xs-2 text-center">
-                                 <img class="small-head-img" src="~/Content/img/login/head-img.gif">
-                             </div>
-                             <div class="mui-col-sm-3 mui-col-xs-3">
-                                 <span class="rank-list-text">大雄</span>
-                             </div>
-                             <div class="mui-col-sm-4 mui-col-xs-4 text-center">
-                                 <span class="rank-list-text">100</span>
-                             </div>
-                         </div>
-                     </li>
-                 </ul>*@
-            <h4 style="text-align:center">敬请期待。。。</h4>
-        </div>
-        <div id="tabbar-with-mine" class="mui-control-content">
-            <div class="title">积分：@Model.User.Account.Vouchers</div>
-
-            <div class="mui-row">
-                <div class="mui-col-sm-4 mui-col-xs-4">
-                </div>
-                <div class="mui-col-sm-4 mui-col-xs-4">
-                    <img src="~/Content/img/login/head-img.gif" class="head-img" />
-                    <h4 class="nick-name">@Model.User.Name</h4>
-                </div>
-            </div>
-            <ul class="mui-table-view">
-                <li class="mui-table-view-cell mui-input-group">
-                    <div class="mui-input-row">
-                        <label>邮箱</label>
-                        <input type="text" class="mui-input-clear" disabled="" placeholder="@Model.User.Email">
-                    </div>
-                </li>
-                <li class="mui-table-view-cell mui-input-group">
-                    <div class="mui-input-row">
-                        <label>钱包</label>
-                        <input type="text" class="mui-input-clear" disabled="" placeholder="@Model.User.Wallet">
-                    </div>
-                </li>
-                @*<li class="mui-table-view-cell mui-input-group">
-                        <div class="mui-input-row">
-                            <label>密码：</label>
-                            <input type="password" class="mui-input-clear mui-input-password" placeholder="请输入密码">
-                        </div>
-                    </li>
-                    <li class="mui-table-view-cell mui-input-group">
-                        <div class="mui-input-row">
-                            <label>确认密码：</label>
-                            <input type="password" class="mui-input-clear mui-input-password" placeholder="再次输入密码">
-                        </div>
-                    </li>*@
-            </ul>
-            <ul class="mui-table-view" style="margin-top: 25px;">
-                <li class="mui-table-view-cell">
-                    <a class="mui-navigate-right">
-                        联系客服:添加微信qwechat
-                    </a>
-                </li>
-            </ul>
-        </div>
     </div>
 </body>
-
 
 </html>
 <script src="~/Content/js/mui.min.js"></script>
