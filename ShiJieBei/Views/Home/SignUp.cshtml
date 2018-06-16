@@ -2,31 +2,27 @@
 @{
     Layout = null;
 }
+
 <!DOCTYPE html>
 <html class="ui-page-login">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <title>世界杯竞猜</title>
-
+    <title>注册-世界杯竞猜</title>
     <link href="~/Content/css/mui.min.css" rel="stylesheet" />
     <link href="~/Content/css/login.css" rel="stylesheet" />
+    <link href="~/Content/css/app.css" rel="stylesheet" />
 </head>
 
 <body>
     <div class="mui-content">
-        <div class="mui-row login-img">
-            <div class="mui-col-sm-3 mui-col-xs-3">
-            </div>
-            <div class="mui-col-sm-6 mui-col-xs-6">
-                <img src="~/Content/img/logo.jpg" width="100%" height="100%" />
-                @*<img src="~/Content/img/login/60x60.gif" width="100%" height="100%" />*@
-            </div>
+        <div class="login-img">
+            <img src="~/Content/img/login/sjb_pic.png" width="100%" height="100%" />
         </div>
-        <form id='login-form' class="mui-input-group" style="margin: 0px 15px;" method="post" action="/home/signup">
+        <form id='sign-form' class="mui-input-group" style="margin: 0px 15px;" method="post" action="/home/signup">
             <div class="mui-input-row">
-                <input id='email' type="email" name="email" class="mui-input-clear" placeholder="输入邮箱">
+                <input id='email' type="email" name="email" class="mui-input-clear" placeholder="请输入邮箱">
             </div>
             <div class="mui-input-row">
                 <input id='wallet' type="text" name="wallet" class="mui-input-clear" placeholder="输入钱包地址">
@@ -40,11 +36,10 @@
             <button id='gosignup' type="submit" style="display:none" class="mui-btn mui-btn-block mui-btn-primary">触发注册</button>
         </form>
         <div class="mui-content-padded">
-            <button id='sign' onclick="goSignUp()" class="mui-btn mui-btn-block mui-btn-primary">注册</button>
-           
+            <button id='sign' onclick="goSignUp()" class="login-btn mui-btn mui-btn-block mui-btn-primary">注册</button>
         </div>
     </div>
-
+   
 </body>
 
 </html>

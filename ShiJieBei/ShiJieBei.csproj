@@ -224,8 +224,17 @@
     <Content Include="Content\img\gjtb\ygl.png" />
     <Content Include="Content\img\gjtb\yl.png" />
     <Content Include="Content\img\login\60x60.gif" />
+    <Content Include="Content\img\login\dl_btn.png" />
     <Content Include="Content\img\login\head-img.gif" />
+    <Content Include="Content\img\login\sjb_pic.png" />
+    <Content Include="Content\img\login\zc_btn.png" />
     <Content Include="Content\img\logo.jpg" />
+    <Content Include="Content\img\nav\phb-hover.png" />
+    <Content Include="Content\img\nav\phb.png" />
+    <Content Include="Content\img\nav\sc-hover.png" />
+    <Content Include="Content\img\nav\sc.png" />
+    <Content Include="Content\img\nav\w-hover.png" />
+    <Content Include="Content\img\nav\w.png" />
     <Content Include="Content\js\95516.js" />
     <Content Include="Content\js\amazeui.min.js" />
     <Content Include="Content\js\app.js" />
