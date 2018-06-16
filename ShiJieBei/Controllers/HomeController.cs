@@ -13,10 +13,9 @@ namespace ShiJieBei.Controllers
     public class HomeController : Controller
     {
         private readonly ShiJieBeiDbContext _db = new ShiJieBeiDbContext();
-        [Authorize(Roles = "user")]
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index", "Game");
         }
 
         public ActionResult About()
