@@ -22,8 +22,9 @@ namespace ShiJieBei.Controllers
         }
         public ActionResult Rank()
         {
-          
-            return View();
+            var userList = _db.Users.Where(u => u.IsEmailValid).OrderByDescending(o => o.Account.Vouchers).ToList();
+            ViewBag.MyRank = userList.IndexOf(CurrentUser);
+            return View(userList);
         }
     }
 }
