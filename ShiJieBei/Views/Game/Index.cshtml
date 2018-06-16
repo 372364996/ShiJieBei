@@ -41,25 +41,27 @@
         <div style="padding-bottom: 20px;">
             @foreach (var item in Model.Games)
             {
-                <div class="mui-card">
-                    <div class="jc-img-div">
-                        <img src="~/Content/img/schedule/jcz.png" class="js-icon" />
+                <a href="/game/play?gameId=@item.Id">
+                    <div class="mui-card">
+                        <div class="jc-img-div">
+                            <img src="~/Content/img/schedule/jcz.png" class="js-icon" />
+                        </div>
+                        <div class="jc-div">
+                            <div class="inline-block third">
+                                <img class="flag center-block" src="~/Content/img/gjtb/@($"{item.ZhuChangSuoXie}.png")" />
+                                <span class="national center-block text-center">@item.ZhuChang</span>
+                            </div>
+                            <div class="inline-block third">
+                                <h1 class="text-center">VS</h1>
+                                <span class="start-time center-block text-center">@item.StartTime.ToString("MM-dd") @item.StartTime.ToString("HH:mm")</span>
+                            </div>
+                            <div class="inline-block third">
+                                <img class="flag center-block" src="~/Content/img/gjtb/@($"{item.KeChangSuoXie}.png")" />
+                                <span class="national center-block text-center">@item.KeChang</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="jc-div">
-                        <div class="inline-block third">
-                            <img class="flag center-block" src="~/Content/img/gjtb/@($"{item.ZhuChangSuoXie}.png")"/>
-                            <span class="national center-block text-center">@item.ZhuChang</span>
-                        </div>
-                        <div class="inline-block third">
-                            <h1 class="text-center">VS</h1>
-                            <span class="start-time center-block text-center">@item.StartTime.ToString("MM-dd") @item.StartTime.ToString("HH:mm")</span>
-                        </div>
-                        <div class="inline-block third">
-                            <img class="flag center-block" src="~/Content/img/gjtb/@($"{item.KeChangSuoXie}.png")" />
-                            <span class="national center-block text-center">@item.KeChang</span>
-                        </div>
-                    </div>
-                </div>
+                </a>
             }
 
         </div>

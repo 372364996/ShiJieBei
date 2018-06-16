@@ -26,5 +26,21 @@ namespace ShiJieBei.Controllers
             ViewBag.MyRank = userList.IndexOf(CurrentUser);
             return View(userList);
         }
+        public ActionResult Play(int gameId)
+        {
+            
+            var game = _db.Games.FirstOrDefault(g => g.Id == gameId);
+            if (game == null)
+            {
+                return RedirectToAction("Index");
+            }
+            PlayGameViewModel data = new PlayGameViewModel {
+                Game=game,
+                User=CurrentUser,
+                GameOrders=game.GameOrders
+            };
+            return View(data);
+        }
+
     }
 }

@@ -171,6 +171,7 @@
     </Compile>
     <Compile Include="Models\GameViewModel.cs" />
     <Compile Include="Models\MyGameListViewModel.cs" />
+    <Compile Include="Models\PlayGameViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -366,6 +367,7 @@
     <Content Include="Views\Home\ResetPassword.cshtml" />
     <Content Include="Views\My\Index.cshtml" />
     <Content Include="Views\Game\Rank.cshtml" />
+    <Content Include="Views\Game\Play.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
