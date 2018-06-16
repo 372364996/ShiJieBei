@@ -13,6 +13,7 @@ namespace ShiJieBei.Controllers
     public class HomeController : Controller
     {
         private readonly ShiJieBeiDbContext _db = new ShiJieBeiDbContext();
+        [Authorize(Roles = "user")]
         public ActionResult Index()
         {
             return View();
@@ -69,7 +70,7 @@ namespace ShiJieBei.Controllers
             _db.Users.Add(user);
             _db.SaveChanges();
             SetAuthCookie(user);
-            string tokenUrl = $"https://shijiebei.azurewebsites.net/home/validemail?token={user.Token}";
+            string tokenUrl = $"http://www.tokenbwin.com/home/validemail?token={user.Token}";
             string msg = $"点击下列链接激活邮箱 <a href='{tokenUrl}'>{tokenUrl}</a>";
             Utils.SendEmail(email, msg);
             return RedirectToAction("SendEmail");

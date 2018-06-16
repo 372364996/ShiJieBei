@@ -9,6 +9,7 @@ using ShiJieBeiComponents.Helpers;
 
 namespace ShiJieBei.Controllers
 {
+    [Authorize(Roles = "user")]
     public class GameOrderController : ShiJieBeiController
     {
         /// <summary>

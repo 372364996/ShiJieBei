@@ -272,8 +272,10 @@
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="fonts\mui-icons-extra.ttf" />
     <Content Include="fonts\mui.ttf" />
+    <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Properties\PublishProfiles\shijiebei - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\shijiebei - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\tokenbwin.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
