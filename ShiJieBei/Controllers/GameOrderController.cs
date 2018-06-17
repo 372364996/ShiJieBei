@@ -16,9 +16,14 @@ namespace ShiJieBei.Controllers
         /// 下注（生成订单）
         /// </summary>
         /// <returns></returns>
-        public JsonResult CreateOrder(int gameId, int userId, int gameResult)
+        [HttpPost]
+        public JsonResult CreateOrder(int gameId,  int gameResult)
         {
-
+            if (CurrentUser==null)
+            {
+                return Json(new { success = false, msg = "未登录" });
+            }
+            int userId = CurrentUser.Id;
             var game = _db.Games.Find(gameId);
             var gameOrder = new GameOrders();
             int fee = 20;

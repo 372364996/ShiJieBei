@@ -38,6 +38,7 @@
                 <span class="mui-tab-label">我</span>
             </a>
         </nav>*@
+    <input id="islogin" type="hidden" value="@ViewBag.IsLogin.ToString()" />
     <div class="mui-content my-content">
         <div style="padding-bottom: 20px;">
             <div class="mui-card">
@@ -149,43 +150,75 @@
 <script src="~/Content/js/mui.min.js"></script>
 <script type="text/javascript" charset="utf-8">
     document.getElementById("succ").addEventListener('tap', function () {
-        var btnArray = ['重选', '确定'];
+        if ($("#islogin").val() == "True") {
+ var btnArray = ['重选', '确定'];
         mui.confirm('你选择了主场胜利，只有一次竞猜机会，点击确定后不能修改', '提示信息', btnArray, function (e) {
             if (e.index == 1) {
-                $.post("/gameorder/createorder", { gameId: @Model.Game.Id, userId: @(Model.User.Id), gameResult: 0 }, function (d, s, xhr) {
-                    alert("竞猜成功");
-                    window.location = window.location;
+                $.post("/gameorder/createorder", { gameId: @Model.Game.Id,  gameResult: 0 }, function (d, s, xhr) {
+                    if (d.success) {
+                        alert("竞猜成功");
+                        window.location = window.location;
+                    } else {
+                        alert("竞猜失败");
+                    }
                 });
             } else {
 
             }
         })
+        } else {
+            alert("未登录");
+            window.location = window.location.href = '/home/login';
+        }
+
+
     });
     document.getElementById("fail").addEventListener('tap', function () {
-        var btnArray = ['重选', '确定'];
-        mui.confirm('你选择了客场胜利，只有一次竞猜机会，点击确定后不能修改', '提示信息', btnArray, function (e) {
-            if (e.index == 1) {
-                $.post("/gameorder/createorder", { gameId: @Model.Game.Id, userId: @(Model.User.Id), gameResult: 2 }, function (d, s, xhr) {
-                    alert("竞猜成功");
-                    window.location = window.location;
-                });
-            } else {
+        if ($("#islogin").val() == "True") {
+            var btnArray = ['重选', '确定'];
+            mui.confirm('你选择了客场胜利，只有一次竞猜机会，点击确定后不能修改', '提示信息', btnArray, function (e) {
+                if (e.index == 1) {
+                    $.post("/gameorder/createorder", { gameId: @Model.Game.Id, gameResult: 2 }, function (d, s, xhr) {
+                        if (d.success) {
+                            alert("竞猜成功");
+                            window.location = window.location;
+                        } else {
+                            alert("竞猜失败");
+                        }
+                    });
+                } else {
 
-            }
-        })
+                }
+            })
+        } else {
+            alert("未登录");
+            window.location = window.location.href = '/home/login';
+        }
+
     });
     document.getElementById("tie").addEventListener('tap', function () {
-        var btnArray = ['重选', '确定'];
-        mui.confirm('你选择了平局，只有一次竞猜机会，点击确定后不能修改', '提示信息', btnArray, function (e) {
-            if (e.index == 1) {
-                $.post("/gameorder/createorder", { gameId: @Model.Game.Id, userId: @(Model.User.Id), gameResult: 1 }, function (d, s, xhr) {
-                    alert("竞猜成功");
-                    window.location = window.location;
-                });
-            } else {
+        if ($("#islogin").val() == "True") {
+            var btnArray = ['重选', '确定'];
+            mui.confirm('你选择了平局，只有一次竞猜机会，点击确定后不能修改', '提示信息', btnArray, function (e) {
+                if (e.index == 1) {
+                    $.post("/gameorder/createorder", { gameId: @Model.Game.Id, gameResult: 1 }, function (d, s, xhr) {
+                        if (d.success) {
+                            alert("竞猜成功");
+                            window.location = window.location;
+                        } else {
+                            alert("竞猜失败");
+                        }
 
-            }
-        })
+                    });
+                } else {
+
+                }
+            })
+        } else {
+            alert("未登录");
+            window.location = window.location.href = '/home/login';
+        }
     });
 </script>
+<script src="~/Content/js/jquery.min.js"></script>
 <script src="~/Scripts/app.js"></script>

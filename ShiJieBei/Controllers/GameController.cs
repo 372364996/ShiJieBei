@@ -39,6 +39,7 @@ namespace ShiJieBei.Controllers
                 User=CurrentUser,
                 GameOrders=game.GameOrders
             };
+            ViewBag.IsLogin = CurrentUser != null;
             return View(data);
         }
 
