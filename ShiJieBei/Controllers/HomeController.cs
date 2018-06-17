@@ -131,6 +131,7 @@ namespace ShiJieBei.Controllers
             Utils.SendEmailByCdo("tokenbwin-重置密码", email, msg);
             return RedirectToAction("SendEmail");
         }
+       
         public ActionResult ResetPassword(string code)
         {
             if (string.IsNullOrEmpty(code))
