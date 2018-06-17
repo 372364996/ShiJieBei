@@ -25,19 +25,19 @@
 
 <body>
     @*<nav class="mui-bar mui-bar-tab">
-        <a class="mui-tab-item mui-active" href="/geme">
-            <img class="mui-icon" src="~/Content/img/nav/sc-hover.png"></img>
-            <span class="mui-tab-label">赛程</span>
-        </a>
-        <a class="mui-tab-item" href="/geme/rank">
-            <img class="mui-icon" src="~/Content/img/nav/phb.png"></img>
-            <span class="mui-tab-label">排行榜</span>
-        </a>
-        <a class="mui-tab-item" href="/my">
-            <img class="mui-icon" src="~/Content/img/nav/w.png"></img>
-            <span class="mui-tab-label">我</span>
-        </a>
-    </nav>*@
+            <a class="mui-tab-item mui-active" href="/geme">
+                <img class="mui-icon" src="~/Content/img/nav/sc-hover.png"></img>
+                <span class="mui-tab-label">赛程</span>
+            </a>
+            <a class="mui-tab-item" href="/geme/rank">
+                <img class="mui-icon" src="~/Content/img/nav/phb.png"></img>
+                <span class="mui-tab-label">排行榜</span>
+            </a>
+            <a class="mui-tab-item" href="/my">
+                <img class="mui-icon" src="~/Content/img/nav/w.png"></img>
+                <span class="mui-tab-label">我</span>
+            </a>
+        </nav>*@
     <div class="mui-content my-content">
         <div style="padding-bottom: 20px;">
             <div class="mui-card">
@@ -75,27 +75,28 @@
                 <p>选一方竞猜，竞猜选择每次消耗积分1000，待比赛结束后，猜中者瓜分所有积分池中积分；本活动最终解释权归tokenbwin所有</p>
             </div>
             <div class="dividing-line"></div>
-            @if (Model.GameOrders.Any())
-            {
-                <h4 class="text-center">竞猜记录</h4>
-                <ul class="mui-table-view mui-unfold">
-                    <li class="mui-table-view-cell mui-collapse mui-media mui-media-icon">
-                        <div class="mui-row">
-                            <div class="mui-col-sm-2 mui-col-xs-2 ">
-                                序号
-                            </div>
-                            <div class="mui-col-sm-4 mui-col-xs-4 ">
-                                昵称
-                            </div>
-                            <div class="mui-col-sm-2 mui-col-xs-2 text-center">
-                                结果
-                            </div>
-                            <div class="mui-col-sm-4 mui-col-xs-4 text-right">
-                                日期
-                            </div>
+
+            <h4 class="text-center">竞猜记录</h4>
+            <ul class="mui-table-view mui-unfold">
+                <li class="mui-table-view-cell mui-collapse mui-media mui-media-icon">
+                    <div class="mui-row">
+                        <div class="mui-col-sm-2 mui-col-xs-2 ">
+                            序号
                         </div>
-                    </li>
-                    @foreach (var item in Model.GameOrders)
+                        <div class="mui-col-sm-4 mui-col-xs-4 ">
+                            昵称
+                        </div>
+                        <div class="mui-col-sm-2 mui-col-xs-2 text-center">
+                            结果
+                        </div>
+                        <div class="mui-col-sm-4 mui-col-xs-4 text-right">
+                            日期
+                        </div>
+                    </div>
+                </li>
+                @if (Model.GameOrders.Any())
+                {
+                    foreach (var item in Model.GameOrders)
                     {
                         <li class="mui-table-view-cell mui-collapse mui-media mui-media-icon">
                             <div class="mui-row">
@@ -129,13 +130,14 @@
                             </div>
                         </li>
                     }
+                }
+                else
+                {
+                    <li><h4 class="text-center">暂无竞猜记录</h4></li>
+                }
+            </ul>
 
-                </ul>
-            }
-            else
-            {
-                <h4 class="text-center">暂无竞猜记录</h4>
-            }
+
         </div>
     </div>
 </body>
