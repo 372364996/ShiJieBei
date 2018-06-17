@@ -587,7 +587,7 @@ namespace ShiJieBeiComponents.Helpers
             CDO.Message objMail = new CDO.Message();
             try
             {
-                objMail.To = "372364996@qq.com";
+                objMail.To = email;
                 objMail.From = "worldcup2O18@163.com";
                 objMail.Subject = operation;//邮件主题 
                 objMail.HTMLBody = msg;//邮件内容 

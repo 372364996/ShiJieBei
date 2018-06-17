@@ -10,12 +10,11 @@ namespace ShiJieBei.Controllers
     [Authorize(Roles = "user")]
     public class GameController : ShiJieBeiController
     {
-        // GET: Game
+        [AllowAnonymous]
         public ActionResult Index()
         {
             var model = new GameViewModel
             {
-                User = CurrentUser,
                 Games = _db.Games.ToList()
             };
             return View(model);
