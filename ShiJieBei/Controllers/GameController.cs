@@ -13,11 +13,20 @@ namespace ShiJieBei.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
-            var model = new GameViewModel
+            var model = new GameViewModel 
             {
                 Games = _db.Games.ToList()
             };
+            var data = model.Games.Where(g => g.StartTime.AddMinutes(90) > DateTime.Now).OrderBy(o => o.StartTime).FirstOrDefault();
+            ViewBag.GameList = model.Games;
             return View(model);
+        }
+        [AllowAnonymous]
+        public ActionResult GoIndex()
+        {
+          
+            var data = _db.Games.ToList().Where(g => g.StartTime.AddMinutes(90) > DateTime.Now).OrderBy(o => o.StartTime).FirstOrDefault();
+            return Redirect($"/game/#{data.Id}");
         }
         public ActionResult Rank()
         {
@@ -28,16 +37,17 @@ namespace ShiJieBei.Controllers
         [AllowAnonymous]
         public ActionResult Play(int gameId)
         {
-            
+
             var game = _db.Games.FirstOrDefault(g => g.Id == gameId);
             if (game == null)
             {
                 return RedirectToAction("Index");
             }
-            PlayGameViewModel data = new PlayGameViewModel {
-                Game=game,
-                User=CurrentUser,
-                GameOrders=game.GameOrders
+            PlayGameViewModel data = new PlayGameViewModel
+            {
+                Game = game,
+                User = CurrentUser,
+                GameOrders = game.GameOrders
             };
             ViewBag.IsLogin = CurrentUser != null;
             return View(data);

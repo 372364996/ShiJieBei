@@ -15,7 +15,7 @@ namespace ShiJieBei.Controllers
         private readonly ShiJieBeiDbContext _db = new ShiJieBeiDbContext();
         public ActionResult Index()
         {
-            return RedirectToAction("Index", "Game");
+            return RedirectToAction("GoIndex", "Game");
         }
 
         public ActionResult About()

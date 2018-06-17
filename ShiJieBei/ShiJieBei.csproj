@@ -330,6 +330,7 @@
     <Content Include="Content\img\schedule\bg.jpg" />
     <Content Include="Content\img\schedule\jcz.png" />
     <Content Include="Content\img\schedule\sjb.png" />
+    <Content Include="Content\img\schedule\yjs.png" />
     <Content Include="Content\js\955160.js" />
     <Content Include="Content\js\amazeui.min.js" />
     <Content Include="Content\js\app.js" />

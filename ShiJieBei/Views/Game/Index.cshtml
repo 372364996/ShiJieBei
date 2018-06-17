@@ -1,5 +1,4 @@
-﻿@model ShiJieBei.Models.GameViewModel
-@{
+﻿@{
     Layout = null;
 }
 <!DOCTYPE html>
@@ -21,7 +20,7 @@
 
 <body>
     <nav class="mui-bar mui-bar-tab">
-        <a class="mui-tab-item mui-active" href="/game">
+        <a class="mui-tab-item mui-active" href="/game/goindex">
             <img class="mui-icon" src="~/Content/img/nav/sc-hover.png"></img>
             <span class="mui-tab-label">赛程</span>
         </a>
@@ -39,12 +38,19 @@
             <img src="~/Content/img/schedule/sjb.png" width="100%" height="100%" />
         </div>
         <div style="padding-bottom: 20px;">
-            @foreach (var item in Model.Games)
+            @foreach (var item in (List<ShiJieBeiComponents.Domains.Games>)ViewBag.GameList)
             {
-                <a href="/game/play?gameId=@item.Id">
+                <a id="@item.Id" href="@(item.StartTime.AddMinutes(90) > DateTime.Now?$"/game/play?gameId={item.Id}":"#")">
                     <div class="mui-card">
                         <div class="jc-img-div">
-                            <img src="~/Content/img/schedule/jcz.png" class="js-icon" />
+                            @if (item.StartTime.AddMinutes(90) > DateTime.Now)
+                            {
+                                <img src="~/Content/img/schedule/jcz.png" class="js-icon" />
+                            }
+                            else
+                            {
+                                <img src="~/Content/img/schedule/yjs.png" class="js-icon" />
+                            }
                         </div>
                         <div class="jc-div">
                             <div class="inline-block third">
@@ -53,7 +59,15 @@
                             </div>
                             <div class="inline-block third">
                                 <h1 class="text-center">VS</h1>
-                                <span class="start-time center-block text-center">@item.StartTime.ToString("MM-dd") @item.StartTime.ToString("HH:mm")</span>
+                                @*<span class="start-time center-block text-center">@item.StartTime.ToString("MM-dd") @item.StartTime.ToString("HH:mm")</span>*@
+                                @if (item.StartTime.AddMinutes(90) > DateTime.Now)
+                                {
+                                    <span class="start-time center-block text-center">@item.StartTime.ToString("MM-dd") @item.StartTime.ToString("HH:mm")</span>
+                                }
+                                else
+                                {
+                                    <span class="start-time center-block text-center">@($"{item.ZhuChangScore}-{item.KeChangScore}")</span>
+                                }
                             </div>
                             <div class="inline-block third">
                                 <img class="flag center-block" src="~/Content/img/gjtb/@($"{item.KeChangSuoXie}.png")" />
