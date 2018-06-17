@@ -70,8 +70,9 @@ namespace ShiJieBei.Controllers
             _db.SaveChanges();
             //SetAuthCookie(user);
             string tokenUrl = $"http://www.tokenbwin.com/home/validemail?token={user.Token}";
-            string msg = $"点击下列链接 <a href='{tokenUrl}'>激活邮箱</a>";
-            Utils.SendEmailByCdo("激活邮箱", email, msg);
+            //string msg = $"点击下列链接 <a href='{tokenUrl}'>激活邮箱</a>";
+            string msg = $"尊敬的{email}您好:<br />欢迎您注册tokenbwin竞猜平台。<br/>请访问以下链接完成您的邮箱激活验证。<a href = '{tokenUrl}' > 激活邮箱 </a><br />{tokenUrl}<br />如果无法打开链接，请复制上面的链接粘贴到浏览器的地址栏。";
+            Utils.SendEmailByCdo("tokenbwin-激活邮件", email, msg);
             return RedirectToAction("SendEmail");
         }
 
@@ -124,8 +125,8 @@ namespace ShiJieBei.Controllers
             user.RetrievePassWordCode = Utils.GetRandomString();
             _db.SaveChanges();
             string tokenUrl = $"http://www.tokenbwin.com/home/resetpassword?code={user.RetrievePassWordCode}";
-            string msg = $"点击下列链接 <a href='{tokenUrl}'>重置密码</a>";
-            Utils.SendEmailByCdo("重置密码",email, msg);
+            string msg = $"尊敬的{email}您好:<br />欢迎您注册tokenbwin竞猜平台。<br/>请访问以下链接完成<a href = '{tokenUrl}' > 重置密码 </a><br />{tokenUrl}<br />如果无法打开链接，请复制上面的链接粘贴到浏览器的地址栏。";
+            Utils.SendEmailByCdo("tokenbwin-重置密码", email, msg);
             return RedirectToAction("SendEmail");
         }
         public ActionResult ResetPassword(string code) {
