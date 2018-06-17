@@ -138,7 +138,27 @@ namespace ShiJieBei.Controllers
             {
                 return RedirectToAction("Login");
             }
-            return View();
+            return View(user);
+        }
+        [HttpPost]
+        public ActionResult ResetPassword(string code,string pwd,string qrpwd)
+        {            
+            if (string.IsNullOrEmpty(code))
+            {
+                return RedirectToAction("Login");
+            }
+            if (!pwd.Equals(qrpwd))
+            {
+                return Content($"<script>alert('两次密码输入不一致，请重新输入');window.location.href='/home/resetpassword?code={code}';</script>");
+            }
+            var user = _db.Users.FirstOrDefault(u => u.RetrievePassWordCode == code);
+            if (user == null)
+            {
+                return RedirectToAction("Login");
+            }
+            user.Password = CryptoHelper.Md5(pwd);
+            _db.SaveChanges();
+            return RedirectToAction("Login");
         }
         private void SetAuthCookie(User user)
         {
