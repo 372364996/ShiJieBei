@@ -281,6 +281,7 @@
     <Content Include="Content\img\jf.png" />
     <Content Include="Content\img\login\60x60.gif" />
     <Content Include="Content\img\login\dl_btn.png" />
+    <Content Include="Content\img\login\email.png" />
     <Content Include="Content\img\login\head-img.gif" />
     <Content Include="Content\img\login\sjb_pic.png" />
     <Content Include="Content\img\login\zc_btn.png" />
@@ -363,6 +364,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
