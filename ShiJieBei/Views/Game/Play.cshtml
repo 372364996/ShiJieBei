@@ -9,7 +9,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>竞猜信息-世界杯竞猜</title>
+    <title>竞猜详情</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -72,7 +72,9 @@
 
             <div class="game-rules">
                 <h4 class="text-center">竞猜规则</h4>
-                <p>选一方竞猜，竞猜选择每次消耗积分1000，待比赛结束后，猜中者瓜分所有积分池中积分；本活动最终解释权归tokenbwin所有</p>
+                <p>1:每场比赛竞猜分胜平负三种竞猜形式，每个帐号仅能下注一种；</p>
+                <p>2:竞猜下注最低一注起，每注等于20积分；</p>
+                <p>3:积分可随时提现;提现加微信客服：tokenbwin；</p>
             </div>
             <div class="dividing-line"></div>
 
@@ -104,10 +106,10 @@
                                     <span class="rank-list-text">@(Model.GameOrders.IndexOf(item) + 1)</span>
                                 </div>
                                 <div class="mui-col-sm-1 mui-col-xs-1 ">
-                                    @*<img class="icon-img" src="~/Content/img/login/head-img.gif">*@
+                                    <img class="icon-img" src="~/Content/img/headimage/@item.User.HeadImg">
                                 </div>
                                 <div class="mui-col-sm-3 mui-col-xs-3">
-                                    <span class="rank-list-text">@item.User.Name</span>
+                                    <span class="rank-list-text">@(item.User.Name)</span>
                                 </div>
                                 <div class="mui-col-sm-2 mui-col-xs-2 text-center">
                                     @if (item.GameOrderStatus == ShiJieBeiComponents.Domains.GameOrderStatus.Win)
@@ -116,11 +118,11 @@
                                     }
                                     else if (item.GameOrderStatus == ShiJieBeiComponents.Domains.GameOrderStatus.Ping)
                                     {
-                                        <span class="rank-list-text succ-text">平</span>
+                                        <span class="rank-list-text tie-text">平</span>
                                     }
                                     else
                                     {
-                                        <span class="rank-list-text succ-text">输</span>
+                                        <span class="rank-list-text fail-text">负</span>
                                     }
 
                                 </div>

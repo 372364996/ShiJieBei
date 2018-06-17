@@ -9,7 +9,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>排行版</title>
+    <title>排行榜</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -71,13 +71,13 @@
                             }
                             else
                             {
-                                <text>Model.IndexOf(item) + 1</text>
+                                <text>@(Model.IndexOf(item) + 1)</text>
 
                             }
 
                         </div>
                         <div class="mui-col-sm-1 mui-col-xs-1 ">
-                            @*<img class="icon-img" src="~/Content/img/login/head-img.gif">*@
+                            <img class="icon-img" src="~/Content/img/headimage/@item.HeadImg">
                         </div>
                         <div class="mui-col-sm-4 mui-col-xs-4">
                             <span class="rank-list-text">@item.Name</span>

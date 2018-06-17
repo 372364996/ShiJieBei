@@ -45,23 +45,24 @@ namespace ShiJieBei.Controllers
         {
             if (!pwd.Equals(qrpwd))
                 return Content("<script>alert('密码不一致');window.location.href='/home/signup';</script>");
-           
+
             var data = _db.Users.FirstOrDefault(m => m.Email == email);
-            if (data!=null)
+            if (data != null)
                 return Content("<script>alert('邮箱已被注册');window.location.href='/home/signup';</script>");
             User user = new User
             {
-                Name = $"User-{Utils.GetRandomString()}",
+                Name = $"{Utils.GetRandomString()}",
                 Email = email,
                 LastImgTime = DateTime.Now,
                 CreateTime = DateTime.Now,
+                HeadImg = $"{new Random().Next(1 - 42)}.png",
                 Wallet = wallet,
                 Token = Guid.NewGuid().ToString(),
                 Account = new Account
                 {
                     Money = 0,
                     MoneyLocked = 0,
-                    Vouchers = 10000
+                    Vouchers = 50
                 }
             };
             string pwdHash = CryptoHelper.Md5(pwd);
@@ -109,15 +110,16 @@ namespace ShiJieBei.Controllers
                 return Redirect("/game");
             }
 
-            return  Content("<script>alert('邮箱或密码不正确');window.location.href='/home/login'</script>");
+            return Content("<script>alert('邮箱或密码不正确');window.location.href='/home/login'</script>");
         }
-        public ActionResult RetrievePassword() {
+        public ActionResult RetrievePassword()
+        {
             return View();
         }
         [HttpPost]
         public ActionResult RetrievePassword(string email)
         {
-           
+
 
             var user = _db.Users.FirstOrDefault(m => m.Email == email);
             if (user == null)
@@ -129,21 +131,22 @@ namespace ShiJieBei.Controllers
             Utils.SendEmailByCdo("tokenbwin-重置密码", email, msg);
             return RedirectToAction("SendEmail");
         }
-        public ActionResult ResetPassword(string code) {
+        public ActionResult ResetPassword(string code)
+        {
             if (string.IsNullOrEmpty(code))
             {
                 return RedirectToAction("Login");
             }
-            var user = _db.Users.FirstOrDefault(u=>u.RetrievePassWordCode==code);
-            if (user==null)
+            var user = _db.Users.FirstOrDefault(u => u.RetrievePassWordCode == code);
+            if (user == null)
             {
                 return RedirectToAction("Login");
             }
             return View(user);
         }
         [HttpPost]
-        public ActionResult ResetPassword(string code,string pwd,string qrpwd)
-        {            
+        public ActionResult ResetPassword(string code, string pwd, string qrpwd)
+        {
             if (string.IsNullOrEmpty(code))
             {
                 return RedirectToAction("Login");

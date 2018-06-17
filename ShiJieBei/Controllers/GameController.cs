@@ -25,6 +25,7 @@ namespace ShiJieBei.Controllers
             ViewBag.MyRank = userList.IndexOf(CurrentUser);
             return View(userList);
         }
+        [AllowAnonymous]
         public ActionResult Play(int gameId)
         {
             

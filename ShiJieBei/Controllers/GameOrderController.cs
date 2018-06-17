@@ -21,6 +21,7 @@ namespace ShiJieBei.Controllers
 
             var game = _db.Games.Find(gameId);
             var gameOrder = new GameOrders();
+            int fee = 20;
             gameOrder.GameId = gameId;
             gameOrder.UserId = userId;
             gameOrder.Number = Utils.GetOrderNumber();
@@ -28,7 +29,7 @@ namespace ShiJieBei.Controllers
             gameOrder.CreateTime = DateTime.Now;
             _db.GameOrders.Add(gameOrder);
             _db.SaveChanges();
-            if (CurrentUser.Account.Vouchers < 10)
+            if (CurrentUser.Account.Vouchers < fee)
             {
                 return Json(new { success = false, msg = "余额不足" });
             }
@@ -38,10 +39,10 @@ namespace ShiJieBei.Controllers
                 Account = CurrentUser.Account,
                 AccountId = CurrentUser.Account.Id,
                 Before = CurrentUser.Account.Vouchers,
-                After = CurrentUser.Account.Vouchers - 10,
+                After = CurrentUser.Account.Vouchers - fee,
                 CreateTime = DateTime.Now,
                 Description = $"{CurrentUser.Name}下注比赛{game.ZhuChang}VS{game.KeChang},买{gameResult}",
-                Vouchers = 10,
+                Vouchers = fee,
                 Number = gameOrder.Number,
                 DetailId = gameId,
                 Type = AccountVouchersLogType.Billing,
