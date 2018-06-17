@@ -149,7 +149,7 @@
         mui.confirm('你选择了主场胜利，只有一次竞猜机会，点击确定后不能修改', '提示信息', btnArray, function (e) {
             if (e.index == 1) {
                 $.post("/gameorder/createorder", { gameId: @Model.Game.Id, userId: @(Model.User.Id), gameResult: 0 }, function (d, s, xhr) {
-                    alert("下注成功");
+                    alert("竞猜成功");
                     window.location = window.location;
                 });
             } else {
@@ -162,7 +162,7 @@
         mui.confirm('你选择了客场胜利，只有一次竞猜机会，点击确定后不能修改', '提示信息', btnArray, function (e) {
             if (e.index == 1) {
                 $.post("/gameorder/createorder", { gameId: @Model.Game.Id, userId: @(Model.User.Id), gameResult: 2 }, function (d, s, xhr) {
-                    alert("下注成功");
+                    alert("竞猜成功");
                     window.location = window.location;
                 });
             } else {
@@ -175,7 +175,7 @@
         mui.confirm('你选择了平局，只有一次竞猜机会，点击确定后不能修改', '提示信息', btnArray, function (e) {
             if (e.index == 1) {
                 $.post("/gameorder/createorder", { gameId: @Model.Game.Id, userId: @(Model.User.Id), gameResult: 1 }, function (d, s, xhr) {
-                    alert("下注成功");
+                    alert("竞猜成功");
                     window.location = window.location;
                 });
             } else {
