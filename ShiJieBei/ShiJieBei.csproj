@@ -421,6 +421,7 @@
     <Content Include="Views\Game\Rank.cshtml" />
     <Content Include="Views\Game\Play.cshtml" />
     <Content Include="Views\My\ResetPasswordByCenter.cshtml" />
+    <Content Include="Views\My\UpdateUserName.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

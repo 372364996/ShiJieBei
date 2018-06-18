@@ -15,6 +15,23 @@ namespace ShiJieBei.Controllers
         {
             return View(CurrentUser);
         }
+
+        public ActionResult UpdateUserName()
+        {
+            return View(CurrentUser);
+        }
+        [HttpPost]
+        public ActionResult UpdateUserName(string name)
+        {
+          var user =  _db.Users.FirstOrDefault(u => u.Id == CurrentUser.Id);
+            if (user == null)
+            {
+                return RedirectToAction("Login");
+            }
+            user.Name = name;
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
         public ActionResult ResetPasswordByCenter()
         {
 

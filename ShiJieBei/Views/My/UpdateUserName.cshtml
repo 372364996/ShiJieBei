@@ -1,0 +1,39 @@
+﻿@model ShiJieBeiComponents.Domains.User
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html class="ui-page-login">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>更改昵称-世界杯竞猜</title>
+    <link href="~/Content/css/mui.min.css" rel="stylesheet" />
+    <link href="~/Content/css/login.css" rel="stylesheet" />
+    <link href="~/Content/css/app.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="mui-content">
+        <form class="change-pwd-form mui-input-group" method="post" action="/my/updateusername">
+            <div class="mui-input-row">
+                <input id='update-name' type="text" name="name" class="mui-input-clear" placeholder="请输入昵称">
+            </div>
+            <button id='updateusername' style="display:none" class="login-btn mui-btn mui-btn-block mui-btn-primary">触发修改</button>
+        </form>
+        <div class="mui-content-padded">
+            <button id='change-name' onclick="updateusername()" class="login-btn mui-btn mui-btn-block mui-btn-primary">确认修改</button>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="~/Content/js/jquery.min.js"></script>
+<script>
+    function updateusername() {
+        $("#updateusername").click();
+    }
+</script>
+<script src="~/Scripts/app.js"></script>
