@@ -19,14 +19,19 @@ namespace ShiJieBei.Controllers
         [HttpPost]
         public JsonResult CreateOrder(int gameId,  int gameResult)
         {
+            int fee = 20;
             if (CurrentUser==null)
             {
                 return Json(new { success = false, msg = "未登录" });
             }
+            if (CurrentUser.Account.Vouchers < fee)
+            {
+                return Json(new { success = false, msg = "余额不足,微信联系客服tokenbwin进行充值" });
+            }
             int userId = CurrentUser.Id;
             var game = _db.Games.Find(gameId);
             var gameOrder = new GameOrders();
-            int fee = 20;
+         
             gameOrder.GameId = gameId;
             gameOrder.UserId = userId;
             gameOrder.Number = Utils.GetOrderNumber();
@@ -34,10 +39,7 @@ namespace ShiJieBei.Controllers
             gameOrder.CreateTime = DateTime.Now;
             _db.GameOrders.Add(gameOrder);
             _db.SaveChanges();
-            if (CurrentUser.Account.Vouchers < fee)
-            {
-                return Json(new { success = false, msg = "余额不足" });
-            }
+           
 
             AccountVouchersLog log = new AccountVouchersLog()
             {

@@ -157,10 +157,12 @@
             if (e.index == 1) {
                 $.post("/gameorder/createorder", { gameId: @Model.Game.Id,  gameResult: 0 }, function (d, s, xhr) {
                     if (d.success) {
-                        alert("竞猜成功");
+                        var tipArray = ['确定'];
+                        mui.confirm('竞猜成功' + d.msg, '提示信息', tipArray, function (e) { });
                         window.location = window.location;
                     } else {
-                        alert("竞猜失败");
+                        var tipArray = ['确定'];
+                        mui.confirm('竞猜失败' + d.msg, '提示信息', tipArray, function (e) { });
                     }
                 });
             } else {
@@ -181,10 +183,12 @@
                 if (e.index == 1) {
                     $.post("/gameorder/createorder", { gameId: @Model.Game.Id, gameResult: 2 }, function (d, s, xhr) {
                         if (d.success) {
-                            alert("竞猜成功");
+                            var tipArray = ['确定'];
+                            mui.confirm('竞猜成功' + d.msg, '提示信息', tipArray, function (e) { });
                             window.location = window.location;
                         } else {
-                            alert("竞猜失败");
+                             var tipArray = [ '确定'];
+                            mui.confirm('竞猜失败' + d.msg, '提示信息', tipArray, function (e) { });
                         }
                     });
                 } else {
@@ -204,10 +208,12 @@
                 if (e.index == 1) {
                     $.post("/gameorder/createorder", { gameId: @Model.Game.Id, gameResult: 1 }, function (d, s, xhr) {
                         if (d.success) {
-                            alert("竞猜成功");
+                            var tipArray = ['确定'];
+                            mui.confirm('竞猜成功' + d.msg, '提示信息', tipArray, function (e) { });
                             window.location = window.location;
                         } else {
-                            alert("竞猜失败");
+                            var tipArray = ['确定'];
+                            mui.confirm('竞猜失败' + d.msg, '提示信息', tipArray, function (e) { });
                         }
 
                     });

@@ -362,6 +362,7 @@
     <Content Include="Content\js\mui.pullToRefresh.material.js" />
     <Content Include="Content\js\mui.view.js" />
     <Content Include="Content\js\mui.zoom.js" />
+    <Content Include="Content\js\schedule.js" />
     <Content Include="Content\js\update.js" />
     <Content Include="Content\js\webviewGroup.js" />
     <Content Include="favicon.ico" />
