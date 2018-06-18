@@ -42,19 +42,19 @@ form{
 	text-align: right;
 }
 input::-webkit-input-placeholder {
-	color: #333333;
+    color: #CCCCCC;
 }
 
 input::-moz-input-placeholder {
-	color: #333333;
+    color: #CCCCCC;
 }
 
 input::-ms-input-placeholder {
-	color: #333333;
+    color: #CCCCCC;
 }
 .mui-input-row label{
 	padding: 0px;
-	color: #333333;
+	color: #CCCCCC;
 	width: 20%;
 }
 .mui-input-row label~input, .mui-input-row label~select, .mui-input-row label~textarea{

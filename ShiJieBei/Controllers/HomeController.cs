@@ -55,7 +55,7 @@ namespace ShiJieBei.Controllers
                 Email = email,
                 LastImgTime = DateTime.Now,
                 CreateTime = DateTime.Now,
-                HeadImg = $"{new Random().Next(1 - 42)}.png",
+                HeadImg = $"{new Random().Next(1, 42)}.png",
                 Wallet = wallet,
                 Token = Guid.NewGuid().ToString(),
                 Account = new Account
@@ -131,7 +131,7 @@ namespace ShiJieBei.Controllers
             Utils.SendEmailByCdo("tokenbwin-重置密码", email, msg);
             return RedirectToAction("SendEmail");
         }
-       
+
         public ActionResult ResetPassword(string code)
         {
             if (string.IsNullOrEmpty(code))
