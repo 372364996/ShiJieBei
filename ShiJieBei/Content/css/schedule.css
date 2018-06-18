@@ -36,6 +36,15 @@ h1{
 	padding: 1px 5px;
 	border-radius: 6px;
 }
+.end{
+	margin-top: 10px;
+	background-color: #555555;
+	color: #FFFFFF;
+	font-size: 20px;
+	padding: 1px 5px;
+	border-radius: 6px;
+	font-weight: 800;
+}
 .national{
 	margin-top: 10px;
 	color: #333333;
