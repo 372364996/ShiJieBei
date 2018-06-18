@@ -54,3 +54,10 @@ h1{
 .flag{
 	width: 60px;
 }
+#banner {
+    position: fixed;
+    height: 200px;
+    z-index: 99;
+    top: 0px;
+    background-image: url(../../Content/img/schedule/bg.jpg)
+}

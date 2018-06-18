@@ -34,10 +34,10 @@
         </a>
     </nav>
     <div class="mui-content my-content">
-        <div id="banner" class="banner-div">
+        <div id="banner">
             <img src="~/Content/img/schedule/sjb.png" width="100%" height="100%" />
         </div>
-        <div id="list">
+        <div id="list" style="margin-top: 200px;">
             @foreach (var item in (List<ShiJieBeiComponents.Domains.Games>)ViewBag.GameList)
             {
                 <a onclick="@(item.StartTime.AddMinutes(90) > DateTime.Now?"":"alert('竞猜已结束')")" id="@item.Id" href="@(item.StartTime.AddMinutes(90) > DateTime.Now?$"/game/play?gameId={item.Id}":"javascript:void(0);")">
@@ -85,4 +85,4 @@
 </html>
 <script src="~/Content/js/jquery.min.js"></script>
 <script src="~/Scripts/app.js"></script>
-<script src="~/Content/js/schedule.js"></script>
+

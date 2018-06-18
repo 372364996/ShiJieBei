@@ -26,7 +26,7 @@ namespace ShiJieBei.Controllers
         {
           
             var data = _db.Games.ToList().Where(g => g.StartTime.AddMinutes(90) > DateTime.Now).OrderBy(o => o.StartTime).FirstOrDefault();
-            return Redirect($"/game/#{data.Id}");
+            return Redirect($"/game/#{data.Id-2}");
         }
         public ActionResult Rank()
         {

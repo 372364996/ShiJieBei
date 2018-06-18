@@ -153,13 +153,13 @@
     document.getElementById("succ").addEventListener('tap', function () {
         if ($("#islogin").val() == "True") {
  var btnArray = ['重选', '确定'];
-        mui.confirm('你选择了主场胜利，只有一次竞猜机会，点击确定后不能修改', '提示信息', btnArray, function (e) {
+            mui.confirm('你选择了主场胜利，点击确认后竞猜成功。可以多次竞猜。', '提示信息', btnArray, function (e) {
             if (e.index == 1) {
                 $.post("/gameorder/createorder", { gameId: @Model.Game.Id,  gameResult: 0 }, function (d, s, xhr) {
                     if (d.success) {
                         var tipArray = ['确定'];
-                        mui.confirm('竞猜成功' + d.msg, '提示信息', tipArray, function (e) { });
-                        window.location = window.location;
+                        mui.confirm('竞猜成功', '提示信息', tipArray, function (e) { window.location = window.location; });
+                        
                     } else {
                         var tipArray = ['确定'];
                         mui.confirm('竞猜失败' + d.msg, '提示信息', tipArray, function (e) { });
@@ -170,8 +170,8 @@
             }
         })
         } else {
-            alert("未登录");
-            window.location = window.location.href = '/home/login';
+            var tipArray = ['确定'];
+            mui.confirm('未登录', '提示信息', tipArray, function (e) { window.location = window.location.href = '/home/login'; });
         }
 
 
@@ -179,13 +179,13 @@
     document.getElementById("fail").addEventListener('tap', function () {
         if ($("#islogin").val() == "True") {
             var btnArray = ['重选', '确定'];
-            mui.confirm('你选择了客场胜利，只有一次竞猜机会，点击确定后不能修改', '提示信息', btnArray, function (e) {
+            mui.confirm('你选择了客场胜利，点击确认后竞猜成功。可以多次竞猜。', '提示信息', btnArray, function (e) {
                 if (e.index == 1) {
                     $.post("/gameorder/createorder", { gameId: @Model.Game.Id, gameResult: 2 }, function (d, s, xhr) {
                         if (d.success) {
                             var tipArray = ['确定'];
-                            mui.confirm('竞猜成功' + d.msg, '提示信息', tipArray, function (e) { });
-                            window.location = window.location;
+                            mui.confirm('竞猜成功' , '提示信息', tipArray, function (e) { window.location = window.location; });
+                           
                         } else {
                              var tipArray = [ '确定'];
                             mui.confirm('竞猜失败' + d.msg, '提示信息', tipArray, function (e) { });
@@ -196,20 +196,20 @@
                 }
             })
         } else {
-            alert("未登录");
-            window.location = window.location.href = '/home/login';
+            var tipArray = ['确定'];
+            mui.confirm('未登录', '提示信息', tipArray, function (e) { window.location = window.location.href = '/home/login'; });
         }
 
     });
     document.getElementById("tie").addEventListener('tap', function () {
         if ($("#islogin").val() == "True") {
             var btnArray = ['重选', '确定'];
-            mui.confirm('你选择了平局，只有一次竞猜机会，点击确定后不能修改', '提示信息', btnArray, function (e) {
+            mui.confirm('你选择了平局，点击确认后竞猜成功。可以多次竞猜。', '提示信息', btnArray, function (e) {
                 if (e.index == 1) {
                     $.post("/gameorder/createorder", { gameId: @Model.Game.Id, gameResult: 1 }, function (d, s, xhr) {
                         if (d.success) {
                             var tipArray = ['确定'];
-                            mui.confirm('竞猜成功' + d.msg, '提示信息', tipArray, function (e) { });
+                            mui.confirm('竞猜成功', '提示信息', tipArray, function (e) { window.location = window.location; });
                             window.location = window.location;
                         } else {
                             var tipArray = ['确定'];
@@ -222,8 +222,9 @@
                 }
             })
         } else {
-            alert("未登录");
-            window.location = window.location.href = '/home/login';
+            var tipArray = ['确定'];
+            mui.confirm('未登录', '提示信息', tipArray, function (e) { window.location = window.location.href = '/home/login'; });
+          
         }
     });
 </script>

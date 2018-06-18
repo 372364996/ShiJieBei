@@ -91,7 +91,7 @@ namespace ShiJieBei.Controllers
             }
             data.IsEmailValid = true;
             _db.SaveChanges();
-            return Redirect("/game");
+            return Redirect("/game/goindex");
         }
 
         [HttpPost]
@@ -107,7 +107,7 @@ namespace ShiJieBei.Controllers
                 }
                 SetAuthCookie(user);
 
-                return Redirect("/game");
+                return Redirect("/game/goindex");
             }
 
             return Content("<script>alert('邮箱或密码不正确');window.location.href='/home/login'</script>");
