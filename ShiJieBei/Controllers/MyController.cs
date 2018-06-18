@@ -23,7 +23,7 @@ namespace ShiJieBei.Controllers
         [HttpPost]
         public ActionResult UpdateUserName(string name)
         {
-          var user =  _db.Users.FirstOrDefault(u => u.Id == CurrentUser.Id);
+            var user = _db.Users.FirstOrDefault(u => u.Id == CurrentUser.Id);
             if (user == null)
             {
                 return RedirectToAction("Login");
@@ -56,7 +56,12 @@ namespace ShiJieBei.Controllers
             }
             user.Password = CryptoHelper.Md5(pwd);
             _db.SaveChanges();
-            return RedirectToAction("Index","My");
+            return RedirectToAction("Index", "My");
+        }
+        public ActionResult MyVoucherLog()
+        {
+            var list = _db.AccountVouchersLog.Where(v => v.AccountId == CurrentUser.Id).ToList();
+            return View(list);
         }
     }
 }

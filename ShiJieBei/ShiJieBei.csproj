@@ -434,6 +434,7 @@
     <Content Include="Views\Game\Play.cshtml" />
     <Content Include="Views\My\ResetPasswordByCenter.cshtml" />
     <Content Include="Views\My\UpdateUserName.cshtml" />
+    <Content Include="Views\My\MyVoucherLog.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

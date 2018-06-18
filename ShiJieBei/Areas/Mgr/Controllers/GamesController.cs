@@ -148,7 +148,7 @@ namespace ShiJieBei.Areas.Mgr.Controllers
             {
                 try
                 {
-                    Charge(item.User, Utils.GetChargeNumber(item.UserId), vouchers, $"{item.User.Name}下注比赛{game.ZhuChang}VS{game.KeChang},买{item.GameOrderStatus},获得{vouchers}积分",game.Id);
+                    Charge(item.User, Utils.GetChargeNumber(item.UserId), vouchers, $"竞猜【{game.ZhuChang}】VS【{game.KeChang}】,猜中,获得{vouchers}积分", game.Id);
                 }
                 catch (Exception exp)
                 {

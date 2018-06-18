@@ -39,8 +39,20 @@ namespace ShiJieBei.Controllers
             gameOrder.CreateTime = DateTime.Now;
             _db.GameOrders.Add(gameOrder);
             _db.SaveChanges();
-           
 
+            string resultStr = "";
+            if (gameOrder.GameOrderStatus==GameOrderStatus.Win)
+            {
+                resultStr = "胜";
+            }
+            else if (gameOrder.GameOrderStatus == GameOrderStatus.Ping )
+            {
+                resultStr = "平";
+            }
+            else if (gameOrder.GameOrderStatus == GameOrderStatus.Lose)
+            {
+                resultStr = "负";
+            }
             AccountVouchersLog log = new AccountVouchersLog()
             {
                 Account = CurrentUser.Account,
@@ -48,7 +60,7 @@ namespace ShiJieBei.Controllers
                 Before = CurrentUser.Account.Vouchers,
                 After = CurrentUser.Account.Vouchers - fee,
                 CreateTime = DateTime.Now,
-                Description = $"{CurrentUser.Name}下注比赛{game.ZhuChang}VS{game.KeChang},买{gameResult},小号{fee}积分",
+                Description = $"竞猜【{game.ZhuChang}】VS【{game.KeChang}】,{resultStr},消耗{fee}积分",
                 Vouchers = fee,
                 Number = gameOrder.Number,
                 DetailId = gameId,
