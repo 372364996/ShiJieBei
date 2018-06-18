@@ -53,7 +53,7 @@ namespace ShiJieBei.Controllers
                 Type = AccountVouchersLogType.Billing,
             };
             _db.AccountVouchersLog.Add(log);
-            CurrentUser.Account.Vouchers -= 10;
+            CurrentUser.Account.Vouchers -= fee;
             _db.SaveChanges();
             return Json(new { success = true });
         }
