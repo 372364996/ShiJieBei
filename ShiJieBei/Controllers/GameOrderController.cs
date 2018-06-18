@@ -48,11 +48,11 @@ namespace ShiJieBei.Controllers
                 Before = CurrentUser.Account.Vouchers,
                 After = CurrentUser.Account.Vouchers - fee,
                 CreateTime = DateTime.Now,
-                Description = $"{CurrentUser.Name}下注比赛{game.ZhuChang}VS{game.KeChang},买{gameResult}",
+                Description = $"{CurrentUser.Name}下注比赛{game.ZhuChang}VS{game.KeChang},买{gameResult},小号{fee}积分",
                 Vouchers = fee,
                 Number = gameOrder.Number,
                 DetailId = gameId,
-                Type = AccountVouchersLogType.Billing,
+                Type = AccountVouchersLogType.Pay,
             };
             _db.AccountVouchersLog.Add(log);
             CurrentUser.Account.Vouchers -= fee;

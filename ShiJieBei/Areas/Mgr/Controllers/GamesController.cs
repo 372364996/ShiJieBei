@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ShiJieBeiComponents.Domains;
+using ShiJieBeiComponents.Helpers;
 using ShiJieBeiComponents.Repositories.EF;
 
 namespace ShiJieBei.Areas.Mgr.Controllers
@@ -117,7 +118,76 @@ namespace ShiJieBei.Areas.Mgr.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        [HttpPost]
+        public ActionResult JieSuan(int id)
+        {
+            Games game = db.Games.Find(id);
+            if (game.IsDone)
+            {
+                return Json(new { success = false,msg="已结算" });
+            }
+            game.IsDone = true;
+            db.SaveChanges();
+            var totalVouchers = game.GameOrders.Count * 20;
+            var winGames = game.GameOrders.Where(o => o.GameOrderStatus == game.Status).ToList();
 
+            decimal vouchers = totalVouchers / winGames.Count;
+            foreach (var item in game.GameOrders)
+            {
+                if (item.GameOrderStatus==game.Status)
+                {
+                    item.IsWin = true;
+                }
+                else
+                {
+                    item.IsWin = false;
+                }
+            }
+            db.SaveChanges();      
+            foreach (var item in winGames)
+            {
+                try
+                {
+                    Charge(item.User, Utils.GetChargeNumber(item.UserId), vouchers, $"{item.User.Name}下注比赛{game.ZhuChang}VS{game.KeChang},买{item.GameOrderStatus},获得{vouchers}积分",game.Id);
+                }
+                catch (Exception exp)
+                {
+                    logger.Error("给用户：" + item.UserId + "结算失败:", exp);
+                    return Json(new { success = false, userid = item.UserId, Money = "0", MoneyLocked = "0", Vouchers = "0" });
+                }
+            }
+            return Json(new { success = true });
+
+            
+        }
+        public void Charge(User user, string number, decimal vouchers, string description,int gameId)
+        {
+            var log = db.AccountVouchersLog.FirstOrDefault(a => a.Number == number);
+            if (log != null)
+            {
+                throw new Exception(String.Format("订单号{0}已经处理过,Description:{1},Vouchers:{2}", number, description, vouchers));
+            }
+            //生成账户记录
+            AccountVouchersLog accountLog = new AccountVouchersLog()
+            {
+                Account = user.Account,
+                AccountId = user.Id,
+                Before = user.Account.Vouchers,
+                After = user.Account.Vouchers + vouchers,
+                Vouchers = vouchers,
+                Description = description,
+                CreateTime = DateTime.Now,
+                Number = number,
+                Type = AccountVouchersLogType.Income,
+                DetailId=gameId
+            };
+            db.AccountVouchersLog.Add(accountLog);
+            //修改账户余额
+            var userData = db.Users.Where(u => u.Id == user.Id).FirstOrDefault();
+            userData.Account.Vouchers += vouchers;
+
+            db.SaveChanges();
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

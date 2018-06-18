@@ -13,6 +13,7 @@ namespace ShiJieBeiComponents.Domains
         public int GameId { get; set; }
         public string Number { get; set; }
         public GameOrderStatus GameOrderStatus { get; set; }
+        public bool? IsWin { get; set; }
         public DateTime CreateTime { get; set; }
         public virtual Games Game { get; set; }
         public virtual User User { get; set; }

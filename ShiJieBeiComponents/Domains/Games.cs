@@ -27,6 +27,8 @@ namespace ShiJieBeiComponents.Domains
         public GameOrderStatus Status { get; set; }
         [Display(Name = "创建时间")]
         public DateTime CreateTime { get; set; }
+        [Display(Name = "是否结束")]
+        public bool IsDone { get; set; }
         [Display(Name = "比赛时间")]
         public DateTime StartTime { get; set; }
         public virtual List<GameOrders> GameOrders { get; set; }

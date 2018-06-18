@@ -183,8 +183,8 @@ namespace ShiJieBeiComponents.Domains
     /// </summary>
     public enum AccountVouchersLogType
     {
-        Charge,
-        Billing
+        Income,
+        Pay
     }
 
     /// <summary>
