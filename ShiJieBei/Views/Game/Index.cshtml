@@ -40,7 +40,7 @@
         <div style="padding-bottom: 20px;">
             @foreach (var item in (List<ShiJieBeiComponents.Domains.Games>)ViewBag.GameList)
             {
-                <a id="@item.Id" href="@(item.StartTime.AddMinutes(90) > DateTime.Now?$"/game/play?gameId={item.Id}":"#")">
+                <a onclick="@(item.StartTime.AddMinutes(90) > DateTime.Now?"":"alert('竞猜已结束')")" id="@item.Id" href="@(item.StartTime.AddMinutes(90) > DateTime.Now?$"/game/play?gameId={item.Id}":"javascript:void(0);")">
                     <div class="mui-card">
                         <div class="jc-img-div">
                             @if (item.StartTime.AddMinutes(90) > DateTime.Now)
