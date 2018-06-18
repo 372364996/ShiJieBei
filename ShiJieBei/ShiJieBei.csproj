@@ -161,6 +161,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Mgr\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Mgr\Controllers\MgrController.cs" />
+    <Compile Include="Areas\Mgr\MgrAreaRegistration.cs" />
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\GameOrderController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -378,6 +381,8 @@
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="fonts\mui-icons-extra.ttf" />
     <Content Include="fonts\mui.ttf" />
+    <Content Include="Areas\Mgr\Views\web.config" />
+    <Content Include="Areas\Mgr\Views\Home\Login.cshtml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Properties\PublishProfiles\shijiebei - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\shijiebei - Web Deploy.pubxml" />
@@ -425,6 +430,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Mgr\Models\" />
+    <Folder Include="Areas\Mgr\Views\Mgr\" />
+    <Folder Include="Areas\Mgr\Views\Shared\" />
     <Folder Include="Views\ShiJieBei\" />
   </ItemGroup>
   <ItemGroup>

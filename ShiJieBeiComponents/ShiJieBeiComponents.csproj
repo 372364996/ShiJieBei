@@ -65,6 +65,7 @@
     <Compile Include="Domains\Account.cs" />
     <Compile Include="Domains\GameOrders.cs" />
     <Compile Include="Domains\Games.cs" />
+    <Compile Include="Domains\Manager.cs" />
     <Compile Include="Domains\User.cs" />
     <Compile Include="Helpers\CryptoHelper.cs" />
     <Compile Include="Helpers\Utils.cs" />

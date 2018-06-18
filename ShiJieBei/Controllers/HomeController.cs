@@ -168,12 +168,12 @@ namespace ShiJieBei.Controllers
         private void SetAuthCookie(User user)
         {
             //建立身份验证票对象
-            // var mgr = UserService.LoadManager(user.Id);
+            var mgr = _db.Managers.Where(u => u.UserId == user.Id);
             string roles = "user";
-            //if (mgr != null)
-            //{
-            //    roles += ",mgr";
-            //}
+            if (mgr != null)
+            {
+                roles += ",mgr";
+            }
             FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, user.Id.ToString(), Utils.ToLocalTime(DateTime.UtcNow), Utils.ToLocalTime(DateTime.UtcNow.AddDays(7)), false, roles, "/");
             //加密序列化验证票为字符串
             string hashTicket = FormsAuthentication.Encrypt(ticket);

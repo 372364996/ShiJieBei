@@ -1,0 +1,91 @@
+﻿@model string
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>超管后台登陆</title>
+    @Styles.Render("~/Content/mgr")
+    <style>
+        html, body, .container {
+            height: 100%;
+        }
+
+        body {
+            background-color: #999;
+            background-image: url(/Content/Home/images/banner1.jpg);
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .login-form {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 320px;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            border-radius: 6px;
+            opacity: 0.9;
+        }
+
+            .login-form form {
+                padding: 10px 30px;
+                border-radius: 6px;
+            }
+    </style>
+</head>
+<body ontouchstart="">
+    <div class="container">
+        @if (!String.IsNullOrEmpty(Model))
+        {
+            <div class="alert alert-danger">@Model</div>
+        }
+        <div class="login-form">
+            <form id="form_login" method="post" action="/mgr/home/login" class="form-horizontal">
+                <div class="form-group">
+                    <h4 class="form-control-static">登录</h4>
+                </div>
+                <input type="hidden" name="returnUrl" id="returnUrl" value="@Request.QueryString["returnUrl"]" />
+                <div class="form-group">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="用户名">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="pwd" name="pwd" placeholder="密码">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">登录</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script>
+        $(document).ready(function () {
+            $("#form_login").validate({
+                rules: {
+                    name: {
+                        required: true
+                    },
+                    pwd: {
+                        required: true
+                    }
+                },
+                messages: {
+                    name: {
+                        required: "请输入用户名"
+                    },
+                    pwd: {
+                        required: "请输入密码"
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

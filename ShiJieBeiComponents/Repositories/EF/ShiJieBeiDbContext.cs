@@ -47,13 +47,14 @@ namespace ShiJieBeiComponents.Repositories.EF
 
 
 
-
+            modelBuilder.Entity<Manager>().ToTable("Managers");
             modelBuilder.Configurations.Add(new UserMapping());
             modelBuilder.Configurations.Add(new AccountMapping());
             modelBuilder.Configurations.Add(new AccountCashOutLogMapping());
 
         }
         public DbSet<User> Users { get; set; }
+        public DbSet<Manager> Managers { get; set; }
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Games> Games { get; set; }
         public DbSet<GameOrders> GameOrders { get; set; }
