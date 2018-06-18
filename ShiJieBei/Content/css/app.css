@@ -42,15 +42,15 @@ form{
 	text-align: right;
 }
 input::-webkit-input-placeholder {
-    color: #CCCCCC;
+    color: #333333;
 }
 
 input::-moz-input-placeholder {
-    color: #CCCCCC;
+    color: #333333;
 }
 
 input::-ms-input-placeholder {
-    color: #CCCCCC;
+    color: #333333;
 }
 .mui-input-row label{
 	padding: 0px;

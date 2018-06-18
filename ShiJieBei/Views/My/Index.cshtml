@@ -37,23 +37,36 @@
         </a>
     </nav>
     <div class="mui-content my-content">
-        <div class="head-div">
-            <img src="~/Content/img/headimage/@Model.HeadImg" class="head-img" width="76px" height="76px" />
-        </div>
-        <div class="nick-name-div">
-            <a href="/my/updateusername"><span class="nick-name">@Model.Name</span></a>
-            <img src="~/Content/img/jf.png" class="jf-icon" width="20px" height="auto" />
-            <span class="integral">积分：@Model.Account.Vouchers</span>
-        </div>
+        @*<div class="head-div">
+                <img src="~/Content/img/headimage/@Model.HeadImg" class="head-img" width="76px" height="76px" />
+            </div>
+            <div class="nick-name-div">
+                <a href="/my/updateusername"><span class="nick-name">@Model.Name</span></a>
+                <img src="~/Content/img/jf.png" class="jf-icon" width="20px" height="auto" />
+                <span class="integral">积分：@Model.Account.Vouchers</span>
+            </div>*@
+        <ul class="mui-table-view-chevron">
+            <li class="mui-table-view-cell mui-media">
+                <a class="mui-navigate-right" href="/my/updateusername">
+                    <img class="mui-pull-left head-img" width="76px" src="~/Content/img/headimage/@Model.HeadImg">
+                    <div class="mui-media-body">
+                        <span class="nick-name">@Model.Name</span>
+                        <img src="~/Content/img/jf.png" class="jf-icon" width="20px" height="auto" />
+                        <span class="integral">积分：@Model.Account.Vouchers</span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+
         <div class="dividing-line"></div>
         <form id='login-form' class="mui-input-group">
             <div class="mui-input-row">
                 <label>邮箱:</label>
-                <input id='email' type="text" class="mui-input-clear" style="color:#cccccc" value="@Model.Email" readonly="readonly" placeholder="">
+                <input id='email' type="text" class="mui-input-clear" value="@Model.Email" readonly="readonly" placeholder="@Model.Email">
             </div>
             <div class="mui-input-row">
                 <label>钱包:</label>
-                <input id='wallet' type="text" class="mui-input-clear" style="color:#cccccc" value="@Model.Wallet" readonly="readonly" placeholder="">
+                <input id='wallet' type="text" class="mui-input-clear" value="@Model.Wallet" readonly="readonly" placeholder="@Model.Wallet">
             </div>
             <div class="mui-input-row">
                 <label>密码 : </label>
@@ -61,14 +74,20 @@
                 <a href="/my/resetpasswordbycenter" class="mui-navigate-right"></a>
             </div>
 
-            <div class="mui-input-row">
-                <input id='' type="text" class="mui-input-clear" disabled="" placeholder="联系客服 : 添加微信tokenbwin">
+            <div class="mui-input-row" style="height:200px">
+                @*<input id='' type="text" class="mui-input-clear" disabled="" placeholder="">*@
+                <text>
+                    <br />积分兑换规则：<br />
+                    1、本积分为tokenbwin平台世界杯竞猜筹码。<br />
+                    2、新注册用户平台赠送50积分。<br />
+                    3、积分支持多种数字货币兑换。<br />
+                    4、兑换比例以当日币价为准。<br />
+                    5、立即兑换加微信客服：tokenbwin。
+                </text>
             </div>
 
 
-            <div style="margin-left:20px">
-                <br />积分兑换规则：<br />本积分为tokenbwin平台世界杯竞猜筹码。<br />新注册用户平台赠送50积分。<br />积分支持多种数字货币兑换。<br />兑换比例以当日币价为准。<br />立即兑换加微信客服：tokenbwin。
-            </div>
+
 
         </form>
     </div>
