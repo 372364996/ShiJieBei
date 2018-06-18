@@ -1,0 +1,90 @@
+﻿@model ShiJieBeiComponents.Domains.Games
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>删除比赛</h2>
+
+<h3>确定要删除么?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ZhuChang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ZhuChang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KeChang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KeChang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ZhuChangSuoXie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ZhuChangSuoXie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KeChangSuoXie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KeChangSuoXie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ZhuChangScore)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ZhuChangScore)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KeChangScore)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KeChangScore)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+       
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartTime)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("返回赛程列表", "Index")
+        </div>
+    }
+</div>

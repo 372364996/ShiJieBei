@@ -1,0 +1,79 @@
+﻿@model IEnumerable<ShiJieBeiComponents.Domains.Games>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>赛程</h2>
+
+<p>
+   <a class="btn btn-primary" href="/mgr/games/create">创建比赛</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            比赛开始时间
+        </th>
+        <th>
+            主场
+        </th>
+        <th>
+            客场
+        </th>
+        <th>
+            主场缩写
+        </th>
+        <th>
+            客场缩写
+        </th>
+        <th>
+            主场得分
+        </th>
+        <th>
+            客场得分
+        </th>
+        <th>
+            比赛结果
+        </th>
+
+
+        <th>操作</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ZhuChang)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KeChang)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ZhuChangSuoXie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KeChangSuoXie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ZhuChangScore)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KeChangScore)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+
+        <td>
+            @Html.ActionLink("修改", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("详情", "Details", new { id = item.Id }) |
+            @Html.ActionLink("删除", "Delete", new { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>
