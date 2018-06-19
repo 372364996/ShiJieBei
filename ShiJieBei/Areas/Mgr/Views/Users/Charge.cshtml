@@ -1,0 +1,71 @@
+﻿@model ShiJieBeiComponents.Domains.User
+@{
+    ViewBag.Title = "Charge";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>用户充值</h2>
+
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title text-center" id="myModalLabel"><label class="control-label">用户充值</label></h4>
+        </div>
+        <div class="modal-body">
+            <form id="form_charge" class="form-horizontal">
+                <input id="UserId" name="userid" type="hidden" value="@Model.Id" />
+
+
+                <div class="form-group">
+                    <label for="vouchers" class="col-sm-2 control-label">邮箱账号</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" value="@Model.Email" readonly="readonly">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="vouchers" class="col-sm-2 control-label">用户昵称</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" value="@Model.Name" readonly="readonly">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="vouchers" class="col-sm-2 control-label">积分余额</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" value="@Model.Account.Vouchers" readonly="readonly">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="vouchers" class="col-sm-2 control-label">充值点券</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" id="vouchers" name="vouchers" placeholder="兑换点券">
+                    </div>
+                </div>
+                <div class="form-group text-center">
+
+                    <button type="button" onclick="chargeFun();" class="btn btn-primary text-center">确认充值</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script type="text/javascript" charset="utf-8">
+
+        function chargeFun() {
+            $.post("/mgr/users/charges",
+                { vouchers: $("#vouchers").val(),  userId: @Model.Id},
+                function (d, s, xhr) {
+                    if (d.success) {
+                        alert("充值成功");
+                        window.location.href = "/mgr/users";
+                    }
+                    else {
+                        alert("充值失败");
+                        window.location.href = "/mgr/users";
+                    }
+                });
+        }
+    </script>}
+
+

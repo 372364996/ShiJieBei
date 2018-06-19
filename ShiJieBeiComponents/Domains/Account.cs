@@ -184,7 +184,8 @@ namespace ShiJieBeiComponents.Domains
     public enum AccountVouchersLogType
     {
         Income,
-        Pay
+        Pay,
+        Charge
     }
 
     /// <summary>

@@ -164,6 +164,7 @@
     <Compile Include="Areas\Mgr\Controllers\GamesController.cs" />
     <Compile Include="Areas\Mgr\Controllers\HomeController.cs" />
     <Compile Include="Areas\Mgr\Controllers\MgrController.cs" />
+    <Compile Include="Areas\Mgr\Controllers\UsersController.cs" />
     <Compile Include="Areas\Mgr\MgrAreaRegistration.cs" />
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\GameOrderController.cs" />
@@ -390,6 +391,12 @@
     <Content Include="Areas\Mgr\Views\Games\Details.cshtml" />
     <Content Include="Areas\Mgr\Views\Games\Edit.cshtml" />
     <Content Include="Areas\Mgr\Views\Games\Index.cshtml" />
+    <Content Include="Areas\Mgr\Views\Users\Create.cshtml" />
+    <Content Include="Areas\Mgr\Views\Users\Delete.cshtml" />
+    <Content Include="Areas\Mgr\Views\Users\Details.cshtml" />
+    <Content Include="Areas\Mgr\Views\Users\Edit.cshtml" />
+    <Content Include="Areas\Mgr\Views\Users\Index.cshtml" />
+    <Content Include="Areas\Mgr\Views\Users\Charge.cshtml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Properties\PublishProfiles\shijiebei - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\shijiebei - Web Deploy.pubxml" />
