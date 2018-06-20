@@ -31,86 +31,86 @@ namespace ShiJieBei.Controllers
 
             return View();
         }
-//        public ActionResult InputTestData()
-//        {
-//            string[] names = {
-//"飞仔",
-//"0x12",
-//"林晓轩",
-//"xinyuan ",
-//"宋奇东  " ,
-//"xiaodu  ",
-//"hhhh    ",
-//"MT哥    " ,
-//"xiaoxi  ",
-//"a10168  ",
-//"无花    " ,
-//"席博豪  " ,
-//"自由    " ,
-//"黑天使  " ,
-//"风行    " ,
-//"水瓶哥  " ,
-//"天命    " ,
-//"孤魂炫  " ,
-//"天麒    " ,
-//"飞飞    " ,
-//"啊酷    " ,
-//"千百度  " ,
-//"午夜魂  " ,
-//"小迪    ",
-//"一半人的记忆",
-//"54321      ",
-//"caihao     ",
-//"浮生若梦    ",
-//"w408183907 ",
-//"vblock     ",
-//"流氓小子    ",
-//"蚂蚁牙黑    ",
-//"说好要嫁给你",
-//"ry-sj蚂蚁牙黑",
-//"SuperSyt    ",
-//"黑客武林     ",
-//"Hacker皇帝   ",
-//"旧梦         ",
-//"kingsue     ",
-//"143980892   ",
-//"小新         ",
-//"李小四       ",
-//"风吹过       ",
-//"蓦然回首     ",
-//"kill        ",
-//"tom         ",
-//"SATTTTTT    ",
-//"2981AA      ",
-//"那年南山     ",
-//"采菊客       "
-// };
-//            foreach (var item in names)
-//            {
-//                User user = new User
-//                {
-//                    Name = item.Trim(),
-//                    Email = $"{Utils.GetRandomString()}@163.com",
-//                    LastImgTime = DateTime.Now,
-//                    CreateTime = DateTime.Now,
-//                    HeadImg = $"{new Random().Next(1, 42)}.png",
-//                    Wallet = $"0x{Guid.NewGuid().ToString("N")}",
-//                    Token = Guid.NewGuid().ToString(),
-//                    Account = new Account
-//                    {
-//                        Money = 0,
-//                        MoneyLocked = 0,
-//                        Vouchers = 50
-//                    }
-//                };
-//                string pwdHash = CryptoHelper.Md5("123456");
-//                user.Password = pwdHash;
-//                _db.Users.Add(user);
-//                _db.SaveChanges();
-//            }
+        //        public ActionResult InputTestData()
+        //        {
+        //            string[] names = {
+        //"飞仔",
+        //"0x12",
+        //"林晓轩",
+        //"xinyuan ",
+        //"宋奇东  " ,
+        //"xiaodu  ",
+        //"hhhh    ",
+        //"MT哥    " ,
+        //"xiaoxi  ",
+        //"a10168  ",
+        //"无花    " ,
+        //"席博豪  " ,
+        //"自由    " ,
+        //"黑天使  " ,
+        //"风行    " ,
+        //"水瓶哥  " ,
+        //"天命    " ,
+        //"孤魂炫  " ,
+        //"天麒    " ,
+        //"飞飞    " ,
+        //"啊酷    " ,
+        //"千百度  " ,
+        //"午夜魂  " ,
+        //"小迪    ",
+        //"一半人的记忆",
+        //"54321      ",
+        //"caihao     ",
+        //"浮生若梦    ",
+        //"w408183907 ",
+        //"vblock     ",
+        //"流氓小子    ",
+        //"蚂蚁牙黑    ",
+        //"说好要嫁给你",
+        //"ry-sj蚂蚁牙黑",
+        //"SuperSyt    ",
+        //"黑客武林     ",
+        //"Hacker皇帝   ",
+        //"旧梦         ",
+        //"kingsue     ",
+        //"143980892   ",
+        //"小新         ",
+        //"李小四       ",
+        //"风吹过       ",
+        //"蓦然回首     ",
+        //"kill        ",
+        //"tom         ",
+        //"SATTTTTT    ",
+        //"2981AA      ",
+        //"那年南山     ",
+        //"采菊客       "
+        // };
+        //            foreach (var item in names)
+        //            {
+        //                User user = new User
+        //                {
+        //                    Name = item.Trim(),
+        //                    Email = $"{Utils.GetRandomString()}@163.com",
+        //                    LastImgTime = DateTime.Now,
+        //                    CreateTime = DateTime.Now,
+        //                    HeadImg = $"{new Random().Next(1, 42)}.png",
+        //                    Wallet = $"0x{Guid.NewGuid().ToString("N")}",
+        //                    Token = Guid.NewGuid().ToString(),
+        //                    Account = new Account
+        //                    {
+        //                        Money = 0,
+        //                        MoneyLocked = 0,
+        //                        Vouchers = 50
+        //                    }
+        //                };
+        //                string pwdHash = CryptoHelper.Md5("123456");
+        //                user.Password = pwdHash;
+        //                _db.Users.Add(user);
+        //                _db.SaveChanges();
+        //            }
 
-//            return Content("导入成功");
-//        }
+        //            return Content("导入成功");
+        //        }
         public ActionResult Login()
         {
             return View();
@@ -217,6 +217,43 @@ namespace ShiJieBei.Controllers
         //    _db.SaveChanges();
         //    return Content("生成订单成功");
         //}
+        public ActionResult UpdateOrderTime()
+        {
+
+            using (var db = new ShiJieBeiDbContext())
+            {
+                // 批量更新
+                var entitys = db.GameOrders;
+                entitys.ToList().ForEach(item =>
+                {
+                    Random random = new Random();
+                    int day = random.Next(14, 20);
+                    int hour = random.Next(0, 24);
+                    int minute = random.Next(0, 60);
+                    int second = random.Next(0, 60);
+                    string tempStr = string.Format("{0}-{1}-{2} {3}:{4}:{5}", DateTime.Now.ToString("yyyy"), DateTime.Now.ToString("MM"), day, hour, minute, second);
+                    DateTime rTime = Convert.ToDateTime(tempStr);
+                    item.CreateTime = rTime;
+                    db.Entry(item).State = System.Data.Entity.EntityState.Modified; //不加这句也可以，为什么？
+                   
+                });
+                db.SaveChanges();
+            }
+            //foreach (var item in _db.GameOrders)
+            //{
+            //    Random random = new Random();
+            //    int day = random.Next(14, 20);
+            //    int hour = random.Next(0, 24);
+            //    int minute = random.Next(0, 60);
+            //    int second = random.Next(0, 60);
+            //    string tempStr = string.Format("{0}-{1}-{2} {3}:{4}:{5}", DateTime.Now.ToString("yyyy"),DateTime.Now.ToString("MM"), day, hour, minute, second);
+            //    DateTime rTime = Convert.ToDateTime(tempStr);
+            //    item.CreateTime = rTime;
+            //    _db.Entry(item).State = System.Data.Entity.EntityState.Modified;
+            //}
+            //_db.SaveChanges();
+            return Content($"{DateTime.Now}更新时间成功");
+        }
         public ActionResult SendEmail()
         {
             return View();
