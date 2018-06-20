@@ -36,6 +36,12 @@
         <th>
             比赛结果
         </th>
+        <th>
+            总投注数
+        </th>
+        <th>
+            总投注金额
+        </th>
 
 
         <th>操作</th>
@@ -68,7 +74,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
-
+            <td>
+                @item.GameOrders.Sum(o=>o.GameCount)
+            </td>
+            <td>
+                @(item.GameOrders.Sum(o => o.GameCount) * 20)
+            </td>
             <td>
                 @Html.ActionLink("修改", "Edit", new { id = item.Id }) |
                 @Html.ActionLink("详情", "Details", new { id = item.Id }) |

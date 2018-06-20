@@ -124,31 +124,24 @@ namespace ShiJieBei.Areas.Mgr.Controllers
             Games game = db.Games.Find(id);
             if (game.IsDone)
             {
-                return Json(new { success = false,msg="已结算" });
+                return Json(new { success = false, msg = "已结算" });
             }
             game.IsDone = true;
             db.SaveChanges();
-            var totalVouchers = game.GameOrders.Count * 20;
+            var totalVouchers = game.GameOrders.Sum(o => o.GameCount)*20;//本局总投注点券
             var winGames = game.GameOrders.Where(o => o.GameOrderStatus == game.Status).ToList();
 
-            decimal vouchers = totalVouchers / winGames.Count;
+            decimal vouchers = totalVouchers / winGames.Sum(o=>o.GameCount);//胜利的人每人每注能分到多少点券
             foreach (var item in game.GameOrders)
             {
-                if (item.GameOrderStatus==game.Status)
-                {
-                    item.IsWin = true;
-                }
-                else
-                {
-                    item.IsWin = false;
-                }
+                item.IsWin = item.GameOrderStatus == game.Status;
             }
-            db.SaveChanges();      
+            db.SaveChanges();
             foreach (var item in winGames)
             {
                 try
                 {
-                    Charge(item.User, Utils.GetChargeNumber(item.UserId), vouchers, $"竞猜【{game.ZhuChang}】VS【{game.KeChang}】,猜中,获得{vouchers}积分", game.Id);
+                    Charge(item.User, Utils.GetChargeNumber(item.UserId), vouchers * item.GameCount, $"竞猜【{game.ZhuChang}】VS【{game.KeChang}】,猜中,获得{vouchers * item.GameCount}积分", game.Id);
                 }
                 catch (Exception exp)
                 {
@@ -158,14 +151,14 @@ namespace ShiJieBei.Areas.Mgr.Controllers
             }
             return Json(new { success = true });
 
-            
+
         }
-        public void Charge(User user, string number, decimal vouchers, string description,int gameId)
+        public void Charge(User user, string number, decimal vouchers, string description, int gameId)
         {
             var log = db.AccountVouchersLog.FirstOrDefault(a => a.Number == number);
             if (log != null)
             {
-                throw new Exception(String.Format("订单号{0}已经处理过,Description:{1},Vouchers:{2}", number, description, vouchers));
+                throw new Exception($"订单号{number}已经处理过,Description:{description},Vouchers:{vouchers}");
             }
             //生成账户记录
             AccountVouchersLog accountLog = new AccountVouchersLog()
@@ -179,12 +172,12 @@ namespace ShiJieBei.Areas.Mgr.Controllers
                 CreateTime = DateTime.Now,
                 Number = number,
                 Type = AccountVouchersLogType.Income,
-                DetailId=gameId
+                DetailId = gameId
             };
             db.AccountVouchersLog.Add(accountLog);
             //修改账户余额
-            var userData = db.Users.Where(u => u.Id == user.Id).FirstOrDefault();
-            userData.Account.Vouchers += vouchers;
+            var userData = db.Users.FirstOrDefault(u => u.Id == user.Id);
+            if (userData != null) userData.Account.Vouchers += vouchers;
 
             db.SaveChanges();
         }
