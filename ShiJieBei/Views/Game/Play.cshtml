@@ -20,7 +20,7 @@
     <link rel="stylesheet" type="text/css" href="~/Content/css/rank.css" />
     <link rel="stylesheet" type="text/css" href="~/Content/css/jc.css" />
     <link rel="stylesheet" type="text/css" href="~/Content/css/app.css" />
-
+    <link href="~/Content/css/sweetalert2.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -66,9 +66,9 @@
             <div class="dividing-line"></div>
             <h4 class="text-center">竞猜</h4>
             <div class="btn-div">
-                <button id="succ" type="button" class="succ-text jc-btn mui-btn-outlined">胜</button>
+                <button id="succ" type="button" class="succ-text jc-btn mui-btn-outlined">主胜</button>
                 <button id="tie" type="button" class="tie-text jc-btn mui-btn-outlined">平</button>
-                <button id="fail" type="button" class="fail-text jc-btn mui-btn-outlined">负</button>
+                <button id="fail" type="button" class="fail-text jc-btn mui-btn-outlined">客胜</button>
             </div>
 
             <div class="game-rules">
@@ -116,7 +116,7 @@
                                 <div class="mui-col-sm-2 mui-col-xs-2 text-center">
                                     @if (item.GameOrderStatus == ShiJieBeiComponents.Domains.GameOrderStatus.Win)
                                     {
-                                        <span class="rank-list-text succ-text">胜</span>
+                                        <span class="rank-list-text succ-text">主胜</span>
                                     }
                                     else if (item.GameOrderStatus == ShiJieBeiComponents.Domains.GameOrderStatus.Ping)
                                     {
@@ -124,7 +124,7 @@
                                     }
                                     else
                                     {
-                                        <span class="rank-list-text fail-text">负</span>
+                                        <span class="rank-list-text fail-text">客胜</span>
                                     }
 
                                 </div>
@@ -149,26 +149,26 @@
 </html>
 <script src="~/Content/js/jquery.min.js"></script>
 <script src="~/Content/js/mui.min.js"></script>
-<script type="text/javascript" charset="utf-8">
+@*<script type="text/javascript" charset="utf-8">
     document.getElementById("succ").addEventListener('tap', function () {
         if ($("#islogin").val() == "True") {
- var btnArray = ['重选', '确定'];
+            var btnArray = ['重选', '确定'];
             mui.confirm('你选择了主场胜利，点击确认后竞猜成功。可以多次竞猜。', '提示信息', btnArray, function (e) {
-            if (e.index == 1) {
-                $.post("/gameorder/createorder", { gameId: @Model.Game.Id,  gameResult: 0 }, function (d, s, xhr) {
-                    if (d.success) {
-                        var tipArray = ['确定'];
-                        mui.confirm('竞猜成功', '提示信息', tipArray, function (e) { window.location = window.location; });
+                if (e.index == 1) {
+                    $.post("/gameorder/createorder", { gameId: @Model.Game.Id,  gameResult: 0 }, function (d, s, xhr) {
+                        if (d.success) {
+                            var tipArray = ['确定'];
+                            mui.confirm('竞猜成功', '提示信息', tipArray, function (e) { window.location = window.location; });
 
-                    } else {
-                        var tipArray = ['确定'];
-                        mui.confirm('竞猜失败' + d.msg, '提示信息', tipArray, function (e) { });
-                    }
-                });
-            } else {
+                        } else {
+                            var tipArray = ['确定'];
+                            mui.confirm('竞猜失败' + d.msg, '提示信息', tipArray, function (e) { });
+                        }
+                    });
+                } else {
 
-            }
-        })
+                }
+            })
         } else {
             var tipArray = ['确定'];
             mui.confirm('未登录', '提示信息', tipArray, function (e) { window.location = window.location.href = '/home/login'; });
@@ -187,7 +187,7 @@
                             mui.confirm('竞猜成功' , '提示信息', tipArray, function (e) { window.location = window.location; });
 
                         } else {
-                             var tipArray = [ '确定'];
+                            var tipArray = [ '确定'];
                             mui.confirm('竞猜失败' + d.msg, '提示信息', tipArray, function (e) { });
                         }
                     });
@@ -227,10 +227,67 @@
 
         }
     });
-</script>
+</script>*@
 <script src="~/Scripts/app.js"></script>
+<script src="~/Content/js/sweetalert2.all.min.js"></script>
 <script>
     mui('body').on('tap', 'a', function () {
         window.top.location.href = this.href;
     });
+</script>
+<script type="text/javascript" charset="utf-8">
+    var rang =
+        '<button type="button" class="mui-btn">1</button>' +
+            '<button type="button" class="mui-btn">5</button>' +
+            '<button type="button" class="mui-btn">10</button>' +
+            '<button type="button" class="mui-btn">50</button>' +
+            '<button type="button" class="mui-btn">100</button>' +
+            '<button type="button" class="mui-btn">500</button>' ;
+    var btn_val = 1;
+    $("body").on("click", ".mui-btn", function () {
+        $(".mui-btn").removeClass("mui-active");
+        $(this).addClass("mui-active");
+        btn_val = $(this).html();
+    });
+    $("body").on("click", ".jc-btn", function () {
+        bet($(this).attr('id'));
+    });
+    function bet(id) {
+        var titleStr = '';
+        var resultStr = 0;
+        if (id == 'succ'){
+            titleStr = '主胜';
+            resultStr = 0;
+        }else if(id == 'tie'){
+            titleStr = '平';
+            resultStr = 1;
+        }else if(id == 'fail'){
+            titleStr = '客胜';
+            resultStr = 2;
+        }
+        swal({
+            title: titleStr,
+            html: rang,
+            showCloseButton: true,
+            confirmButtonText: '确认'
+        }).then((result) => {
+            if (result.value) {
+                var url = "/gameorder/createorder";
+                var data = {
+                    "gameId": @Model.Game.Id,
+                    "count":btn_val,
+                    "gameResult":resultStr
+                };
+                $.post(url,
+                    data,
+                    function (data) {
+                        if (data.success) {
+                            mui.toast('竞猜成功，'+ titleStr + btn_val +'注，合计' + (btn_val*20) + '积分');
+                        } else {
+                            mui.toast('竞猜失败，'+ data.msg);
+                        }
+                    });
+            }
+        });
+    }
 </script>

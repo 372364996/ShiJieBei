@@ -17,16 +17,16 @@ namespace ShiJieBei.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public JsonResult CreateOrder(int gameId,  int gameResult)
+        public JsonResult CreateOrder(int gameId, int count, int gameResult)
         {
-            int fee = 20;
+            int fee = 20*count;
             if (CurrentUser==null)
             {
                 return Json(new { success = false, msg = "未登录" });
             }
             if (CurrentUser.Account.Vouchers < fee)
             {
-                return Json(new { success = false, msg = "余额不足,微信联系客服tokenbwin进行充值" });
+                return Json(new { success = false, msg = "余额不足,微信联系客服mytokenera进行充值" });
             }
             int userId = CurrentUser.Id;
             var game = _db.Games.Find(gameId);
@@ -43,7 +43,7 @@ namespace ShiJieBei.Controllers
             string resultStr = "";
             if (gameOrder.GameOrderStatus==GameOrderStatus.Win)
             {
-                resultStr = "胜";
+                resultStr = "主胜";
             }
             else if (gameOrder.GameOrderStatus == GameOrderStatus.Ping )
             {
@@ -51,7 +51,7 @@ namespace ShiJieBei.Controllers
             }
             else if (gameOrder.GameOrderStatus == GameOrderStatus.Lose)
             {
-                resultStr = "负";
+                resultStr = "客胜";
             }
             AccountVouchersLog log = new AccountVouchersLog()
             {
@@ -60,7 +60,7 @@ namespace ShiJieBei.Controllers
                 Before = CurrentUser.Account.Vouchers,
                 After = CurrentUser.Account.Vouchers - fee,
                 CreateTime = DateTime.Now,
-                Description = $"竞猜【{game.ZhuChang}】VS【{game.KeChang}】,{resultStr},消耗{fee}积分",
+                Description = $"竞猜【{game.ZhuChang}】VS【{game.KeChang}】,{resultStr}{count}注,消耗{fee}积分",
                 Vouchers = fee,
                 Number = gameOrder.Number,
                 DetailId = gameId,

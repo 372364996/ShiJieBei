@@ -1,4 +1,5 @@
-﻿@model List<ShiJieBeiComponents.Domains.AccountVouchersLog>
+﻿@using ShiJieBeiComponents.Domains
+@model List<ShiJieBeiComponents.Domains.AccountVouchersLog>
 @{
     Layout = null;
 }
@@ -61,16 +62,24 @@
                         <span>@(Model.IndexOf(item) + 1)</span>
                     </div>
                     <div class="mui-col-sm-6 mui-col-xs-6 ">
-                        <span>@item.Description</span>
+                        @if (item.Type == AccountVouchersLogType.Charge)
+                        {  
+                             <span>充值</span>
+                        }
+                        else
+                        {
+                            <span>@item.Description</span>
+                        }
+                     
                     </div>
                     <div class="mui-col-sm-1 mui-col-xs-1 ">
                         @if (item.Type == ShiJieBeiComponents.Domains.AccountVouchersLogType.Pay)
                         {
-                            <span style="color: red">-@item.Vouchers</span>
+                            <span style="color: red">-@item.Vouchers.ToString("0.##")</span>
                         }
                         else
                         {
-                            <span style="color: green">@item.Vouchers</span>
+                            <span style="color: green">@item.Vouchers.ToString("0.##")</span>
                         }
                       
                     </div>
