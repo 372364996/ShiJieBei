@@ -201,6 +201,7 @@
     <Content Include="Content\css\mui.poppicker.css" />
     <Content Include="Content\css\rank.css" />
     <Content Include="Content\css\schedule.css" />
+    <Content Include="Content\css\sweetalert2.min.css" />
     <Content Include="Content\img\bg.jpg" />
     <Content Include="Content\img\gjtb\adly.png" />
     <Content Include="Content\img\gjtb\agt.png" />
@@ -364,6 +365,7 @@
     <Content Include="Content\js\mui.view.js" />
     <Content Include="Content\js\mui.zoom.js" />
     <Content Include="Content\js\schedule.js" />
+    <Content Include="Content\js\sweetalert2.all.min.js" />
     <Content Include="Content\js\update.js" />
     <Content Include="Content\js\webviewGroup.js" />
     <Content Include="favicon.ico" />
