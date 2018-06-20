@@ -7,12 +7,16 @@ namespace ShiJieBeiComponents.Domains
 {
     public class User
     {
+        [Display(Name ="用户ID")]
         public int Id { get; set; }
         [StringLength(100)]
         public string UserGuid { get; set; }
+        [Display(Name = "用户昵称")]
         public string Name { get; set; }
         public string Password { get; set; }
+        [Display(Name = "用户邮箱")]
         public string Email { get; set; }
+        [Display(Name = "用户钱包")]
         public string Wallet { get; set; }
         public string RetrievePassWordCode { get; set; }
         public int Sex { get; set; }
@@ -22,6 +26,7 @@ namespace ShiJieBeiComponents.Domains
         /// <summary>
         /// 头像图片网址
         /// </summary>
+        [Display(Name = "用户头像")]
         public string HeadImg { get; set; }
         public string HeadImgShow { get { return String.IsNullOrEmpty(HeadImg) ? "headimgs/0" : HeadImg; } }
         /// <summary>
@@ -38,6 +43,7 @@ namespace ShiJieBeiComponents.Domains
         /// <summary>
         /// 是否邮箱验证通过
         /// </summary>
+        [Display(Name = "邮箱是否验证")]
         public bool IsEmailValid { get; set; }
 
         /// <summary>

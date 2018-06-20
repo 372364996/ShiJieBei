@@ -159,7 +159,7 @@
                     if (d.success) {
                         var tipArray = ['确定'];
                         mui.confirm('竞猜成功', '提示信息', tipArray, function (e) { window.location = window.location; });
-                        
+
                     } else {
                         var tipArray = ['确定'];
                         mui.confirm('竞猜失败' + d.msg, '提示信息', tipArray, function (e) { });
@@ -185,7 +185,7 @@
                         if (d.success) {
                             var tipArray = ['确定'];
                             mui.confirm('竞猜成功' , '提示信息', tipArray, function (e) { window.location = window.location; });
-                           
+
                         } else {
                              var tipArray = [ '确定'];
                             mui.confirm('竞猜失败' + d.msg, '提示信息', tipArray, function (e) { });
@@ -224,7 +224,7 @@
         } else {
             var tipArray = ['确定'];
             mui.confirm('未登录', '提示信息', tipArray, function (e) { window.location = window.location.href = '/home/login'; });
-          
+
         }
     });
 </script>
