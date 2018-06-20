@@ -54,7 +54,7 @@
                 </div>
             </div>
         </li>
-        @foreach (var item in Model)
+        @foreach (var item in Model.OrderByDescending(o=>o.CreateTime).ToList())
         {
             <li class="mui-table-view-cell mui-collapse mui-media mui-media-icon">
                 <div class="mui-row">

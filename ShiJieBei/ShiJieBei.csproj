@@ -399,6 +399,7 @@
     <Content Include="Areas\Mgr\Views\Users\Edit.cshtml" />
     <Content Include="Areas\Mgr\Views\Users\Index.cshtml" />
     <Content Include="Areas\Mgr\Views\Users\Charge.cshtml" />
+    <None Include="Properties\PublishProfiles\bendi.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Properties\PublishProfiles\shijiebei - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\shijiebei - Web Deploy.pubxml" />

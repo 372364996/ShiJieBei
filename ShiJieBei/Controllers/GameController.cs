@@ -47,7 +47,7 @@ namespace ShiJieBei.Controllers
             {
                 Game = game,
                 User = CurrentUser,
-                GameOrders = game.GameOrders
+                GameOrders = game.GameOrders.OrderByDescending(o=>o.CreateTime).ToList()
             };
             ViewBag.IsLogin = CurrentUser != null;
             return View(data);
