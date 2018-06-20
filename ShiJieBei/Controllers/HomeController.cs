@@ -31,6 +31,86 @@ namespace ShiJieBei.Controllers
 
             return View();
         }
+//        public ActionResult InputTestData()
+//        {
+//            string[] names = {
+//"飞仔",
+//"0x12",
+//"林晓轩",
+//"xinyuan ",
+//"宋奇东  " ,
+//"xiaodu  ",
+//"hhhh    ",
+//"MT哥    " ,
+//"xiaoxi  ",
+//"a10168  ",
+//"无花    " ,
+//"席博豪  " ,
+//"自由    " ,
+//"黑天使  " ,
+//"风行    " ,
+//"水瓶哥  " ,
+//"天命    " ,
+//"孤魂炫  " ,
+//"天麒    " ,
+//"飞飞    " ,
+//"啊酷    " ,
+//"千百度  " ,
+//"午夜魂  " ,
+//"小迪    ",
+//"一半人的记忆",
+//"54321      ",
+//"caihao     ",
+//"浮生若梦    ",
+//"w408183907 ",
+//"vblock     ",
+//"流氓小子    ",
+//"蚂蚁牙黑    ",
+//"说好要嫁给你",
+//"ry-sj蚂蚁牙黑",
+//"SuperSyt    ",
+//"黑客武林     ",
+//"Hacker皇帝   ",
+//"旧梦         ",
+//"kingsue     ",
+//"143980892   ",
+//"小新         ",
+//"李小四       ",
+//"风吹过       ",
+//"蓦然回首     ",
+//"kill        ",
+//"tom         ",
+//"SATTTTTT    ",
+//"2981AA      ",
+//"那年南山     ",
+//"采菊客       "
+// };
+//            foreach (var item in names)
+//            {
+//                User user = new User
+//                {
+//                    Name = item.Trim(),
+//                    Email = $"{Utils.GetRandomString()}@163.com",
+//                    LastImgTime = DateTime.Now,
+//                    CreateTime = DateTime.Now,
+//                    HeadImg = $"{new Random().Next(1, 42)}.png",
+//                    Wallet = $"0x{Guid.NewGuid().ToString("N")}",
+//                    Token = Guid.NewGuid().ToString(),
+//                    Account = new Account
+//                    {
+//                        Money = 0,
+//                        MoneyLocked = 0,
+//                        Vouchers = 50
+//                    }
+//                };
+//                string pwdHash = CryptoHelper.Md5("123456");
+//                user.Password = pwdHash;
+//                _db.Users.Add(user);
+//                _db.SaveChanges();
+//            }
+
+//            return Content("导入成功");
+//        }
         public ActionResult Login()
         {
             return View();
@@ -76,7 +156,67 @@ namespace ShiJieBei.Controllers
             Utils.SendEmailByCdo("tokenbwin-激活邮件", email, msg);
             return RedirectToAction("SendEmail");
         }
+        //public ActionResult InputTestOrders()
+        //{
+        //    foreach (var item in _db.Games)
+        //    {
+        //        for (int i = 0; i < 19; i++)
+        //        {
 
+
+        //            var randomUserId = new Random().Next(1, 50);
+        //            var count = 1;
+        //            var gameResult = new Random().Next(0, 2);
+        //            var user = _db.Users.Where(u => u.Id == randomUserId).FirstOrDefault();
+        //            int fee = 20 * count;
+
+        //            int userId = user.Id;
+        //            var game = _db.Games.Find(item.Id);
+        //            var gameOrder = new GameOrders
+        //            {
+        //                GameCount = count,
+        //                GameId = item.Id,
+        //                UserId = userId,
+        //                Number = Utils.GetOrderNumber(),
+        //                GameOrderStatus = (GameOrderStatus)gameResult,
+        //                CreateTime = DateTime.Now
+        //            };
+        //            _db.GameOrders.Add(gameOrder);
+
+        //            string resultStr = "";
+        //            if (gameOrder.GameOrderStatus == GameOrderStatus.Win)
+        //            {
+        //                resultStr = "主胜";
+        //            }
+        //            else if (gameOrder.GameOrderStatus == GameOrderStatus.Ping)
+        //            {
+        //                resultStr = "平";
+        //            }
+        //            else if (gameOrder.GameOrderStatus == GameOrderStatus.Lose)
+        //            {
+        //                resultStr = "客胜";
+        //            }
+        //            AccountVouchersLog log = new AccountVouchersLog()
+        //            {
+        //                Account = user.Account,
+        //                AccountId = user.Account.Id,
+        //                Before = user.Account.Vouchers,
+        //                After = user.Account.Vouchers - fee,
+        //                CreateTime = DateTime.Now,
+        //                Description = $"竞猜【{game.ZhuChang}】VS【{game.KeChang}】,{resultStr}{count}注,消耗{fee}积分",
+        //                Vouchers = fee,
+        //                Number = gameOrder.Number,
+        //                DetailId = item.Id,
+        //                Type = AccountVouchersLogType.Pay,
+        //            };
+        //            _db.AccountVouchersLog.Add(log);
+        //            user.Account.Vouchers -= fee;
+        //        }
+
+        //    }
+        //    _db.SaveChanges();
+        //    return Content("生成订单成功");
+        //}
         public ActionResult SendEmail()
         {
             return View();
