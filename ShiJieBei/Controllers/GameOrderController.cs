@@ -30,13 +30,15 @@ namespace ShiJieBei.Controllers
             }
             int userId = CurrentUser.Id;
             var game = _db.Games.Find(gameId);
-            var gameOrder = new GameOrders();
-         
-            gameOrder.GameId = gameId;
-            gameOrder.UserId = userId;
-            gameOrder.Number = Utils.GetOrderNumber();
-            gameOrder.GameOrderStatus = (GameOrderStatus)gameResult;
-            gameOrder.CreateTime = DateTime.Now;
+            var gameOrder = new GameOrders
+            {
+                GameCount = count,
+                GameId = gameId,
+                UserId = userId,
+                Number = Utils.GetOrderNumber(),
+                GameOrderStatus = (GameOrderStatus) gameResult,
+                CreateTime = DateTime.Now
+            };
             _db.GameOrders.Add(gameOrder);
             _db.SaveChanges();
 
