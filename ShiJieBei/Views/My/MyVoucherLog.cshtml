@@ -3,13 +3,12 @@
     Layout = null;
 }
 
-
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8">
-    <title>排行榜</title>
+    <title>积分记录</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -22,61 +21,67 @@
 </head>
 
 <body>
-    <nav class="mui-bar mui-bar-tab">
-        <a class="mui-tab-item" href="/game/goindex">
-            <img class="mui-icon" src="~/Content/img/nav/sc.png"></img>
-            <span class="mui-tab-label">赛程</span>
-        </a>
-        <a class="mui-tab-item mui-active" href="/game/rank">
-            <img class="mui-icon" src="~/Content/img/nav/phb-hover.png"></img>
-            <span class="mui-tab-label">排行榜</span>
-        </a>
-        <a class="mui-tab-item" href="/my">
-            <img class="mui-icon" src="~/Content/img/nav/w.png"></img>
-            <span class="mui-tab-label">我</span>
-        </a>
-    </nav>
-    <div class="mui-content my-content">
-        <h4 class="text-center">我的排名：@(ViewBag.MyRank + 1)</h4>
-        <ul class="mui-table-view mui-unfold">
+<nav class="mui-bar mui-bar-tab">
+    <a class="mui-tab-item" href="/game/goindex">
+        <img class="mui-icon" src="~/Content/img/nav/sc.png"/>
+        <span class="mui-tab-label">赛程</span>
+    </a>
+    <a class="mui-tab-item mui-active" href="/game/rank">
+        <img class="mui-icon" src="~/Content/img/nav/phb-hover.png"/>
+        <span class="mui-tab-label">排行榜</span>
+    </a>
+    <a class="mui-tab-item" href="/my">
+        <img class="mui-icon" src="~/Content/img/nav/w.png"/>
+        <span class="mui-tab-label">我</span>
+    </a>
+</nav>
+<div class="mui-content my-content">
+    <ul class="mui-table-view mui-unfold">
+        <li class="mui-table-view-cell mui-collapse mui-media mui-media-icon">
+            <div class="mui-row">
+                <div class="mui-col-sm-2 mui-col-xs-2 ">
+                    序号
+                </div>
+                <div class="mui-col-sm-5 mui-col-xs-5 ">
+                    事件
+                </div>
+                <div class="mui-col-sm-2 mui-col-xs-2 ">
+                    积分
+                </div>
+                <div class="mui-col-sm-3 mui-col-xs-3 text-right">
+                    日期
+                </div>
+            </div>
+        </li>
+        @foreach (var item in Model)
+        {
             <li class="mui-table-view-cell mui-collapse mui-media mui-media-icon">
                 <div class="mui-row">
-                    <div class="mui-col-sm-3 mui-col-xs-3 ">
-                        序号
+                    <div class="mui-col-sm-1 mui-col-xs-1 ">
+                        <span>@(Model.IndexOf(item) + 1)</span>
                     </div>
-                    <div class="mui-col-sm-3 mui-col-xs-3 ">
-                        事件
+                    <div class="mui-col-sm-6 mui-col-xs-6 ">
+                        <span>@item.Description</span>
                     </div>
-                    <div class="mui-col-sm-3 mui-col-xs-3 text-right">
-                        积分
+                    <div class="mui-col-sm-1 mui-col-xs-1 ">
+                        @if (item.Type == ShiJieBeiComponents.Domains.AccountVouchersLogType.Pay)
+                        {
+                            <span style="color: red">-@item.Vouchers</span>
+                        }
+                        else
+                        {
+                            <span style="color: green">@item.Vouchers</span>
+                        }
+                      
                     </div>
-                    <div class="mui-col-sm-3 mui-col-xs-3 text-right">
-                        日期
+                    <div class="mui-col-sm-4 mui-col-xs-4 text-right">
+                        <span>@item.CreateTime.ToString("MM-dd HH:mm")</span>
                     </div>
                 </div>
             </li>
-            @foreach (var item in Model)
-            {
-                <li class="mui-table-view-cell mui-collapse mui-media mui-media-icon">
-                    <div class="mui-row">
-                        <div class="mui-col-sm-3 mui-col-xs-3 ">
-                            <text>@(Model.IndexOf(item) + 1)</text>
-                        </div>
-                        <div class="mui-col-sm-3 mui-col-xs-3">
-                            <span class="rank-list-text">@item.Description</span>
-                        </div>
-                        <div class="mui-col-sm-3 mui-col-xs-3 text-right">
-                            <span class="rank-list-text">@(item.Type==ShiJieBeiComponents.Domains.AccountVouchersLogType.Pay?"-":"")@item.Vouchers</span>
-                        </div>
-                        <div class="mui-col-sm-3 mui-col-xs-3 text-right">
-                            <span class="rank-list-text">@item.CreateTime.ToString("MM-dd HH:mm")</span>
-                        </div>
-                    </div>
-                </li>
-            }
-
-        </ul>
-    </div>
+        }
+    </ul>
+</div>
 
 </body>
 </html>
