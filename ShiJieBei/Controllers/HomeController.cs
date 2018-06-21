@@ -358,5 +358,10 @@ namespace ShiJieBei.Controllers
             //userCookie.Path = "/";
             Response.Cookies.Add(userCookie);
         }
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return Redirect("/home/login");
+        }
     }
 }
