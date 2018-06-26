@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using ShiJieBeiComponents.Domains;
 using ShiJieBeiComponents.Helpers;
 using ShiJieBeiComponents.Repositories.EF;
+using Webdiyer.WebControls.Mvc;
 
 namespace ShiJieBei.Areas.Mgr.Controllers
 {
@@ -17,9 +18,9 @@ namespace ShiJieBei.Areas.Mgr.Controllers
         private ShiJieBeiDbContext db = new ShiJieBeiDbContext();
 
         // GET: Mgr/Games
-        public ActionResult Index()
+        public ActionResult Index(int index=1,string zhuchang="")
         {
-            return View(db.Games.ToList());
+            return View(db.Games.Where(g=>g.ZhuChang.Contains(zhuchang)).OrderBy(o=>o.Id).ToPagedList(index,10));
         }
 
         // GET: Mgr/Games/Details/5
