@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using ShiJieBeiComponents.Domains;
 using ShiJieBeiComponents.Helpers;
 using ShiJieBeiComponents.Repositories.EF;
+using Webdiyer.WebControls.Mvc;
 
 namespace ShiJieBei.Areas.Mgr.Controllers
 {
@@ -17,9 +18,9 @@ namespace ShiJieBei.Areas.Mgr.Controllers
         private ShiJieBeiDbContext db = new ShiJieBeiDbContext();
 
         // GET: Mgr/Users
-        public ActionResult Index()
+        public ActionResult Index(int index=1,string email="")
         {
-            return View(db.Users.ToList());
+            return View(db.Users.Where(u => u.Email.Contains(email)).OrderBy(o => o.Id).ToPagedList(index, 10));
         }
 
         // GET: Mgr/Users/Details/5
