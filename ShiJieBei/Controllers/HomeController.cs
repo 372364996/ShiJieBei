@@ -231,7 +231,8 @@ namespace ShiJieBei.Controllers
                     int hour = random.Next(0, 24);
                     int minute = random.Next(0, 60);
                     int second = random.Next(0, 60);
-                    string tempStr = string.Format("{0}-{1}-{2} {3}:{4}:{5}", DateTime.Now.ToString("yyyy"), DateTime.Now.ToString("MM"), day, hour, minute, second);
+                    string tempStr =
+                        $"{DateTime.Now:yyyy}-{DateTime.Now:MM}-{day} {hour}:{minute}:{second}";
                     DateTime rTime = Convert.ToDateTime(tempStr);
                     item.CreateTime = rTime;
                     db.Entry(item).State = System.Data.Entity.EntityState.Modified; //不加这句也可以，为什么？
@@ -261,13 +262,14 @@ namespace ShiJieBei.Controllers
 
         public ActionResult ValidEmail(string token)
         {
-            var data = _db.Users.FirstOrDefault(u => u.Token == token);
-            if (data == null)
+            var user = _db.Users.FirstOrDefault(u => u.Token == token);
+            if (user == null)
             {
                 return Redirect("/home/login");
             }
-            data.IsEmailValid = true;
+            user.IsEmailValid = true;
             _db.SaveChanges();
+            SetAuthCookie(user);
             return Redirect("/game/goindex");
         }
 
