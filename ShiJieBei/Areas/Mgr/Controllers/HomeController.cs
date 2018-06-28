@@ -14,7 +14,7 @@ namespace ShiJieBei.Areas.Mgr.Controllers
         // GET: Mgr/Home
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index","Games");
         }
         public ActionResult Login()
         {
