@@ -47,6 +47,15 @@
                         比赛结果
                     </th>
                     <th>
+                        主胜
+                    </th>
+                    <th>
+                        平
+                    </th>
+                    <th>
+                        客胜
+                    </th>
+                    <th>
                         总投注数
                     </th>
                     <th>
@@ -85,16 +94,32 @@
                             @Html.DisplayFor(modelItem => item.Status)
                         </td>
                         <td>
+                            @item.GameOrders.Where(o => o.GameOrderStatus == GameOrderStatus.Win).Sum(o => o.GameCount)
+                        </td>
+                        <td>
+                            @item.GameOrders.Where(o => o.GameOrderStatus == GameOrderStatus.Ping).Sum(o => o.GameCount)
+                        </td>
+                        <td>
+                            @item.GameOrders.Where(o => o.GameOrderStatus == GameOrderStatus.Lose).Sum(o => o.GameCount)
+                        </td>
+                        <td>
                             @item.GameOrders.Sum(o => o.GameCount)
                         </td>
                         <td>
                             @(item.GameOrders.Sum(o => o.GameCount) * 20)
                         </td>
                         <td>
-                            @Html.ActionLink("修改", "Edit", new { id = item.Id }) |
-                            @Html.ActionLink("详情", "Details", new { id = item.Id }) |
-                            @Html.ActionLink("删除", "Delete", new { id = item.Id })|
-                            <a onclick="jiesuan(@item.Id)">结算</a>
+                            @Html.ActionLink("修改", "Edit", new { id = item.Id }, new { @class = "btn btn-sm btn-primary" })
+                            @Html.ActionLink("详情", "Details", new { id = item.Id }, new { @class = "btn btn-sm btn-info" })
+                            @Html.ActionLink("删除", "Delete", new { id = item.Id }, new { @class = "btn btn-sm btn-danger" })
+                            @if (item.IsDone)
+                            {
+                                <a style="margin-top:4px" class="btn btn-sm btn-success" disabled="disabled">已结算</a>
+                            }
+                            else
+                            {
+                                <a style="margin-top:4px" class="btn btn-sm btn-success" onclick="jiesuan(@item.Id)">结算</a>
+                            }
                         </td>
                     </tr>
                 }

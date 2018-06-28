@@ -156,67 +156,75 @@ namespace ShiJieBei.Controllers
             Utils.SendEmailByCdo("tokenbwin-激活邮件", email, msg);
             return RedirectToAction("SendEmail");
         }
-        //public ActionResult InputTestOrders()
-        //{
-        //    foreach (var item in _db.Games)
-        //    {
-        //        for (int i = 0; i < 19; i++)
-        //        {
+        public ActionResult InputTestOrders()
+        {
+            foreach (var item in _db.Games)
+            {
+                Random r = new Random();
+                for (int i = 0; i < 19; i++)
+                {
 
 
-        //            var randomUserId = new Random().Next(1, 50);
-        //            var count = 1;
-        //            var gameResult = new Random().Next(0, 2);
-        //            var user = _db.Users.Where(u => u.Id == randomUserId).FirstOrDefault();
-        //            int fee = 20 * count;
+                    var randomUserId = r.Next(1, 50);
+                    var count = 1;
+                    var gameResult = r.Next(0, 3);
+                    var user = _db.Users.Where(u => u.Id == randomUserId).FirstOrDefault();
+                    int fee = 20 * count;
 
-        //            int userId = user.Id;
-        //            var game = _db.Games.Find(item.Id);
-        //            var gameOrder = new GameOrders
-        //            {
-        //                GameCount = count,
-        //                GameId = item.Id,
-        //                UserId = userId,
-        //                Number = Utils.GetOrderNumber(),
-        //                GameOrderStatus = (GameOrderStatus)gameResult,
-        //                CreateTime = DateTime.Now
-        //            };
-        //            _db.GameOrders.Add(gameOrder);
+                    int userId = user.Id;
+                    var game = _db.Games.Find(item.Id);
+                    int day = r.Next(14, 20);
+                    int hour = r.Next(0, 24);
+                    int minute = r.Next(0, 60);
+                    int second = r.Next(0, 60);
+                    string tempStr =
+                        $"{DateTime.Now:yyyy}-{DateTime.Now:MM}-{day} {hour}:{minute}:{second}";
+                    DateTime rTime = Convert.ToDateTime(tempStr);
+                    var gameOrder = new GameOrders
+                    {
+                        GameCount = count,
+                        GameId = item.Id,
+                        UserId = userId,
+                        Number = Utils.GetOrderNumber(),
+                        GameOrderStatus = (GameOrderStatus)gameResult,
+                        CreateTime = rTime
+                    };
+                    _db.GameOrders.Add(gameOrder);
 
-        //            string resultStr = "";
-        //            if (gameOrder.GameOrderStatus == GameOrderStatus.Win)
-        //            {
-        //                resultStr = "主胜";
-        //            }
-        //            else if (gameOrder.GameOrderStatus == GameOrderStatus.Ping)
-        //            {
-        //                resultStr = "平";
-        //            }
-        //            else if (gameOrder.GameOrderStatus == GameOrderStatus.Lose)
-        //            {
-        //                resultStr = "客胜";
-        //            }
-        //            AccountVouchersLog log = new AccountVouchersLog()
-        //            {
-        //                Account = user.Account,
-        //                AccountId = user.Account.Id,
-        //                Before = user.Account.Vouchers,
-        //                After = user.Account.Vouchers - fee,
-        //                CreateTime = DateTime.Now,
-        //                Description = $"竞猜【{game.ZhuChang}】VS【{game.KeChang}】,{resultStr}{count}注,消耗{fee}积分",
-        //                Vouchers = fee,
-        //                Number = gameOrder.Number,
-        //                DetailId = item.Id,
-        //                Type = AccountVouchersLogType.Pay,
-        //            };
-        //            _db.AccountVouchersLog.Add(log);
-        //            user.Account.Vouchers -= fee;
-        //        }
+                    string resultStr = "";
+                    if (gameOrder.GameOrderStatus == GameOrderStatus.Win)
+                    {
+                        resultStr = "主胜";
+                    }
+                    else if (gameOrder.GameOrderStatus == GameOrderStatus.Ping)
+                    {
+                        resultStr = "平";
+                    }
+                    else if (gameOrder.GameOrderStatus == GameOrderStatus.Lose)
+                    {
+                        resultStr = "客胜";
+                    }
+                    AccountVouchersLog log = new AccountVouchersLog()
+                    {
+                        Account = user.Account,
+                        AccountId = user.Account.Id,
+                        Before = user.Account.Vouchers,
+                        After = user.Account.Vouchers - fee,
+                        CreateTime = DateTime.Now,
+                        Description = $"竞猜【{game.ZhuChang}】VS【{game.KeChang}】,{resultStr}{count}注,消耗{fee}积分",
+                        Vouchers = fee,
+                        Number = gameOrder.Number,
+                        DetailId = item.Id,
+                        Type = AccountVouchersLogType.Pay,
+                    };
+                    _db.AccountVouchersLog.Add(log);
+                    user.Account.Vouchers -= fee;
+                }
 
-        //    }
-        //    _db.SaveChanges();
-        //    return Content("生成订单成功");
-        //}
+            }
+            _db.SaveChanges();
+            return Content("生成订单成功");
+        }
         public ActionResult UpdateOrderTime()
         {
 
