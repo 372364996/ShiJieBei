@@ -38,7 +38,12 @@
             <span class="mui-tab-label">我</span>
         </a>
     </nav>
-    <input id="islogin" type="hidden" value="@ViewBag.IsLogin.ToString()" />
+<input id="islogin" type="hidden" value="@ViewBag.IsLogin.ToString()" />
+<div>
+    <img src="~/Content/img/jctop.jpg" height="100%" width="100%" style="z-index: 100" />
+
+    @*<img src="~/Content/img/schedule/sjb.png" width="100%" height="100%" />*@
+</div>
     <div class="mui-content my-content">
         <div style="padding-bottom: 20px;">
             <div class="mui-card">
@@ -71,12 +76,18 @@
                 <button id="fail" type="button" class="fail-text jc-btn mui-btn-outlined">客胜</button>
             </div>
 
-            <div class="game-rules">
+            @*<div class="game-rules">
                 <h4 class="text-center">竞猜规则</h4>
                 <p>1:每场比赛竞猜分胜平负三种竞猜模式,</p>
                 <p>&nbsp;一次操作可以竞猜一次，可以重复竞猜;</p>
                 <p>2:竞猜一次消耗20积分；</p>
                 <p>3:积分可随时提现;提现加微信客服：mytokenera；</p>
+            </div>*@
+            <div class="game-rules">
+                <h4 class="text-center">竞猜规则</h4>
+                <p>1:本场竞猜为GBA Chain专场活动,</p>
+                <p>2:每个帐号可以选择主胜、平、客胜任意竞猜一次</p>
+                <p>3:所有竞猜胜者平分本场GBA奖励20万。</p>
             </div>
             <div class="dividing-line"></div>
 
@@ -159,13 +170,14 @@
 
 <script type="text/javascript" charset="utf-8">
 
-    var rang =
-        '<button type="button" style="width: 20%;" class="mui-btn mui-active">1</button>' +
-            '<button type="button" style="width: 20%;" class="mui-btn">5</button>' +
-            '<button type="button" style="width: 20%;" class="mui-btn">10</button>' +
-            '<button type="button" style="width: 20%;" class="mui-btn">50</button>' +
-            '<button type="button" style="width: 20%;" class="mui-btn">100</button>' +
-            '<button type="button" style="width: 20%;" class="mui-btn">500</button>';
+    //var rang =
+    //    '<button type="button" style="width: 20%;" class="mui-btn mui-active">1</button>' +
+    //        '<button type="button" style="width: 20%;" class="mui-btn">5</button>' +
+    //        '<button type="button" style="width: 20%;" class="mui-btn">10</button>' +
+    //        '<button type="button" style="width: 20%;" class="mui-btn">50</button>' +
+    //        '<button type="button" style="width: 20%;" class="mui-btn">100</button>' +
+    //        '<button type="button" style="width: 20%;" class="mui-btn">500</button>';
+    var rang ='<button type="button" style="width: 20%;" class="mui-btn mui-active">1</button>';
     var btn_val = 1;
     $("body").on("click",
         ".mui-btn",
@@ -201,7 +213,7 @@
                 confirmButtonText: '确认'
             }).then((result) => {
                 if (result.value) {
-                    var url = "/gameorder/createorder";
+                    var url = "/gameorder/yiluncreateorder";
                     var data = {
                         "gameId": @Model.Game.Id,
                         "count": btn_val,
@@ -211,7 +223,8 @@
                         data,
                         function(data) {
                             if (data.success) {
-                                mui.toast('竞猜成功，' + titleStr + btn_val + '注，合计' + (btn_val * 20) + '积分');
+                                //mui.toast('竞猜成功，' + titleStr + btn_val + '注，合计' + (btn_val * 20) + '积分');
+                                mui.toast('竞猜成功。');
                             } else {
                                 mui.toast('竞猜失败，' + data.msg);
                             }

@@ -129,7 +129,9 @@ namespace ShiJieBei.Areas.Mgr.Controllers
             }
             game.IsDone = true;
             db.SaveChanges();
-            var totalVouchers = game.GameOrders.Sum(o => o.GameCount)*20;//本局总投注点券
+            //var totalVouchers = game.GameOrders.Sum(o => o.GameCount)*20;//本局总投注点券
+            var totalVouchers = 200000;//本局总投注点券
+
             var winGames = game.GameOrders.Where(o => o.GameOrderStatus == game.Status).ToList();
 
             decimal vouchers = totalVouchers / winGames.Sum(o=>o.GameCount);//胜利的人每人每注能分到多少点券

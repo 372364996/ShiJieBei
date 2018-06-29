@@ -73,7 +73,37 @@ namespace ShiJieBei.Controllers
             _db.SaveChanges();
             return Json(new { success = true });
         }
-
+        /// <summary>
+        /// 一轮下注（生成订单）
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult YiLunCreateOrder(int gameId, int count, int gameResult)
+        {
+            int userId = CurrentUser.Id;
+            var game = _db.Games.Find(gameId);
+            if (CurrentUser == null)
+            {
+                return Json(new { success = false, msg = "未登录" });
+            }
+            var data = _db.GameOrders.Where(o => o.UserId == userId && o.GameId == gameId).ToList();
+            if (data.Any())
+            {
+                return Json(new { success = false, msg = "您已参加过该场比赛竞猜活动，不能重复参加" });
+            }
+            var gameOrder = new GameOrders
+            {
+                GameCount = count,
+                GameId = gameId,
+                UserId = userId,
+                Number = Utils.GetOrderNumber(),
+                GameOrderStatus = (GameOrderStatus)gameResult,
+                CreateTime = DateTime.Now
+            };
+            _db.GameOrders.Add(gameOrder);
+            _db.SaveChanges();
+            return Json(new { success = true });
+        }
         public ActionResult MyGameList()
         {
 

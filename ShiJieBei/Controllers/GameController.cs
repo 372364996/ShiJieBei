@@ -15,9 +15,8 @@ namespace ShiJieBei.Controllers
         {
             var model = new GameViewModel 
             {
-                Games = _db.Games.ToList()
+                Games = _db.Games. Where(o=>o.Id>98).ToList()
             };
-            var data = model.Games.Where(g => g.StartTime.AddMinutes(90) > DateTime.Now).OrderBy(o => o.StartTime).FirstOrDefault();
             ViewBag.GameList = model.Games;
             return View(model);
         }
@@ -26,6 +25,10 @@ namespace ShiJieBei.Controllers
         {
           
             var data = _db.Games.ToList().Where(g => g.StartTime.AddMinutes(90) > DateTime.Now).OrderBy(o => o.StartTime).FirstOrDefault();
+            if (data==null)
+            {
+                return RedirectToAction("Index");
+            }
             return Redirect($"/game/#{data.Id-2}");
         }
         public ActionResult Rank()
