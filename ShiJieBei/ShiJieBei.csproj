@@ -337,6 +337,7 @@
     <Content Include="Content\img\rank\phb_01.png" />
     <Content Include="Content\img\rank\phb_02.png" />
     <Content Include="Content\img\rank\phb_03.png" />
+    <Content Include="Content\img\schedule\ad.jpg" />
     <Content Include="Content\img\schedule\bg.jpg" />
     <Content Include="Content\img\schedule\jcz.png" />
     <Content Include="Content\img\schedule\sjb.png" />
