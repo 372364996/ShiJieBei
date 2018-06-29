@@ -165,14 +165,21 @@ namespace ShiJieBei.Controllers
                 {
 
 
-                    var randomUserId = r.Next(12, 32);
+                    var randomUserId = r.Next(1, 50);
                     var count = 1;
                     var gameResult = r.Next(0, 3);
-                    var user = _db.Users.FirstOrDefault(u => u.Id == randomUserId);
+                    var user = _db.Users.Where(u => u.Id == randomUserId).FirstOrDefault();
                     int fee = 20 * count;
 
                     int userId = user.Id;
                     var game = _db.Games.Find(item.Id);
+                    int day = r.Next(14, 20);
+                    int hour = r.Next(0, 24);
+                    int minute = r.Next(0, 60);
+                    int second = r.Next(0, 60);
+                    string tempStr =
+                        $"{DateTime.Now:yyyy}-{DateTime.Now:MM}-{day} {hour}:{minute}:{second}";
+                    DateTime rTime = Convert.ToDateTime(tempStr);
                     var gameOrder = new GameOrders
                     {
                         GameCount = count,
@@ -180,7 +187,7 @@ namespace ShiJieBei.Controllers
                         UserId = userId,
                         Number = Utils.GetOrderNumber(),
                         GameOrderStatus = (GameOrderStatus)gameResult,
-                        CreateTime = DateTime.Now
+                        CreateTime = rTime
                     };
                     _db.GameOrders.Add(gameOrder);
 
